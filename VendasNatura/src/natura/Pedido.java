@@ -5,7 +5,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-public class Pedidos{
+public class Pedido{
 	
 	//Atributos
 	private Double precoTotal = 0.00;
@@ -13,10 +13,10 @@ public class Pedidos{
 	private int idPedido = 0;
 	
 	//Cliente - Pedido
-	private Clientes clientePedido = null;
+	private Cliente clientePedido = null;
 	
 	//Pedido - Produto
-	private ArrayList<Produtos> listaProdutos = new ArrayList<Produtos>();
+	private ArrayList<Produto> listaProdutos = new ArrayList<Produto>();
 	
 	private Scanner scan = Natura.scan;
 	
@@ -34,12 +34,12 @@ public class Pedidos{
 	}
 	
 	//Get Cliente - Pedido
-	public Clientes getClientePedido() {
+	public Cliente getClientePedido() {
 		return clientePedido;
 	}
 	
 	//Get Pedido - Produto
-	public List<Produtos> getListaProdutos() {
+	public List<Produto> getListaProdutos() {
 		return listaProdutos;
 	}
 	
@@ -57,22 +57,22 @@ public class Pedidos{
 	}
 	
 	//Set Cliente - Pedido
-	public void setClientePedido(Clientes clientePedido) {
+	public void setClientePedido(Cliente clientePedido) {
 		this.clientePedido = clientePedido;
 	}
 	
 	//Set Pedido - Produto
-	public void setListaProdutos(ArrayList<Produtos> listaProdutos) {
+	public void setListaProdutos(ArrayList<Produto> listaProdutos) {
 		this.listaProdutos = listaProdutos;
 	}
 	
-	public Pedidos(Double precoTotal, String data, Clientes cli, Produtos prod){
+	public Pedido(Double precoTotal, String data, Cliente cli, Produto prod){
 		this.precoTotal = precoTotal;
 		this.data = data;
 		this.clientePedido = cli;
 	}
 	
-	public Pedidos(Clientes cli, Produtos prod){
+	public Pedido(Cliente cli, Produto prod){
 		try{
 			System.out.println("Preço Total do Pedido: ");
 			this.precoTotal = scan.nextDouble();
@@ -111,7 +111,7 @@ public class Pedidos{
     	return true;
     }
 	
-	public void mostraPedido(Clientes cli, Produtos prod){
+	public void mostraPedido(Cliente cli, Produto prod){
 		System.out.println("Pedido:");
 		System.out.println("Realizado por: " + cli.getNomeCliente());
 		System.out.println("Página: " + prod.getPaginaProd());

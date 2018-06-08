@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.InputMismatchException;
 
 public class DBConnection {
 	
@@ -14,15 +13,11 @@ public class DBConnection {
 	public Connection getConn() {
 		return conn;
 	}
-
-	public DBConnection() {
-		
-		try {
-			
+	
+	public DBConnection(){
+		try{
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/natura?user=root&password=amazingday250193");
-			
-		} catch (SQLException e) {
-
+		}catch(SQLException e){
 			e.printStackTrace();
 		}
 	}
@@ -35,7 +30,7 @@ public class DBConnection {
 			if(stmt.execute(sql)) {
 				rs = stmt.getResultSet(); 
 				while(rs.next()) {
-					System.out.println(rs.getString(2));
+					System.out.println(rs.getLong(2) + " - " + rs.getString(3) + " - " + rs.getString(4) + " - " + rs.getString(5));
 				}
 				System.out.println(rs);
 			}else {
@@ -46,15 +41,6 @@ public class DBConnection {
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
-		}
-	}
-	
-	public boolean CheckValue(String value){
-		try{
-			int x = Integer.parseInt(value);
-			return true;
-		}catch(InputMismatchException e){
-			return false;
 		}
 	}
 }

@@ -3,7 +3,7 @@ package natura;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Produtos{
+public class Produto{
 	
 	private int paginaProd = 0;
 	private long codigoProd = 0;
@@ -12,7 +12,7 @@ public class Produtos{
 	private int idProduto = 0;
 
 	//Pedido - Produto
-	private Pedidos pedidoProduto = null;
+	private Pedido pedidoProduto = null;
 	
 	private Scanner scan = Natura.scan;
 	
@@ -38,7 +38,7 @@ public class Produtos{
 	}
 	
 	//Get Pedidos - Produtos
-	public Pedidos getpedidoProduto() {
+	public Pedido getpedidoProduto() {
 		return pedidoProduto;
 	}
 	
@@ -64,11 +64,11 @@ public class Produtos{
 	}
 	
 	//Set Pedido - Produto
-	public void setPedidoProduto(Pedidos pedidoProduto) {
+	public void setPedidoProduto(Pedido pedidoProduto) {
 		this.pedidoProduto = pedidoProduto;
 	}
 	
-	public Produtos(int paginaProd, long codigoProd, String descricaoProd, Double precoProd, Pedidos pedido){
+	public Produto(int paginaProd, long codigoProd, String descricaoProd, Double precoProd, Pedido pedido){
 		this.paginaProd = paginaProd;
 		this.codigoProd = codigoProd;
 		this.descricaoProd = descricaoProd;
@@ -76,14 +76,14 @@ public class Produtos{
 		this.pedidoProduto = pedido;
 	}
 	
-	public Produtos(int paginaProd, long codigoProd, String descricaoProd, Double precoProd){
+	public Produto(int paginaProd, long codigoProd, String descricaoProd, Double precoProd){
 		this.paginaProd = paginaProd;
 		this.codigoProd = codigoProd;
 		this.descricaoProd = descricaoProd;
 		this.precoProd = precoProd;
 	}
 	
-	public Produtos(){
+	public Produto(){
 		try{
 			System.out.println("Página do Produto: ");
 			this.paginaProd = scan.nextInt();
@@ -115,7 +115,7 @@ public class Produtos{
 		}		
 	}
 	
-	public Produtos(Pedidos pedido){
+	public Produto(Pedido pedido){
 		try{
 			System.out.println("Página do Produto: ");
 			this.paginaProd = scan.nextInt();

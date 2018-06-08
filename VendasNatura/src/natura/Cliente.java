@@ -1,11 +1,14 @@
 package natura;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Clientes{
+public class Cliente{
 	
 	//Atributos
 	private String nomeCliente = "";
@@ -15,7 +18,7 @@ public class Clientes{
 	private int idCliente = 0;
 	
 	//Cliente - Pedido
-	private ArrayList<Pedidos> listaPedidos = new ArrayList<Pedidos>();
+	private ArrayList<Pedido> listaPedidos = new ArrayList<Pedido>();
 	
 	private Scanner scan = Natura.scan;
 	
@@ -41,7 +44,7 @@ public class Clientes{
 	}
 	
 	//Get Cliente - Pedido
-	public List<Pedidos> getListaPedidos() {
+	public List<Pedido> getListaPedidos() {
 		return listaPedidos;
 	}
 	
@@ -67,18 +70,18 @@ public class Clientes{
 	}
 	
 	//Set Cliente - Pedido
-	public void setListaPedidos(ArrayList<Pedidos> listaPedidos) {
+	public void setListaPedidos(ArrayList<Pedido> listaPedidos) {
 		this.listaPedidos = listaPedidos;
 	}
 	
-	public Clientes(String nomeCliente, String enderecoCliente, String emailCliente, long telefoneCliente){
+	public Cliente(String nomeCliente, String enderecoCliente, String emailCliente, long telefoneCliente){
 		this.nomeCliente = nomeCliente;
 		this.enderecoCliente = enderecoCliente;
 		this.emailCliente = emailCliente;
 		this.telefoneCliente = telefoneCliente;
 	}
 		
-	public Clientes(){
+	public Cliente(){
 		System.out.println("Nome: ");
 		this.nomeCliente = scan.nextLine();
 		
@@ -95,6 +98,27 @@ public class Clientes{
 		}catch(InputMismatchException e){
 			System.out.println("ERRO: Digite somente números!");
 			scan.nextLine();
+		}
+	}
+	
+	public void createCliente(){
+		Connection conn = (new DBConnection()).getConn();
+		Statement stmt = null;
+		
+		String sql = "insert into clientes(Telefone, Nome, Endereco, Email) values('" + this.telefoneCliente + "','" + this.nomeCliente + "','" + this.enderecoCliente + "'," + this.emailCliente + ")";
+		System.out.println(sql);
+		try {
+			stmt = conn.createStatement();
+			if(stmt.execute(sql)) {
+				System.out.println("Não funcionou");
+			}else {
+				int count = stmt.getUpdateCount();
+				if (count >= 1) {
+					System.out.println("Registro Inserido com sucesso!");
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 	

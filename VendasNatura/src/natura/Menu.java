@@ -3,7 +3,6 @@ package natura;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.InputMismatchException;
 
 public class Menu{
 	
@@ -31,10 +30,19 @@ public class Menu{
 		try {
 			opSelecionada = scan.nextInt();
 			scan.nextLine();
-		} catch (InputMismatchException e) {
+		} catch (Exception e) {
 			System.out.println("Erro de valor! Somente números!");
 			scan.nextLine();
 		}		
 		return opSelecionada;
 	}	
+	 
+	/*public boolean checkValue(String value){
+		try{
+			int x = Integer.parseInt(value);
+			return true;
+		}catch(Exception e){
+			return false;
+		}
+	}*/
 }
