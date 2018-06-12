@@ -18,7 +18,8 @@ public class Natura{
 	public static List<String> opsMenuProdutos = Arrays.asList("Cadastrar Produto", "Pesquisar Produto");
 	public static List<String> opsMenuEstoque =  Arrays.asList("Atualizar Estoque", "Relatório de Estoque");
 	
-	public static List<String> opsMenuPesqClientes = Arrays.asList("Pesquisar por Telefone", "Pesquisar por Nome");
+	public static List<String> opsMenuPesqClientes = Arrays.asList("Pesquisar por Código", "Pesquisar por Nome");
+	public static List<String> opsRemoverAlterar = Arrays.asList("Remover", "Alterar");
 	
 	public static Scanner scan = new Scanner(System.in);
 	
@@ -40,9 +41,49 @@ public class Natura{
 				do{
 					switch(opClientes){
 					case 0:
-						cadastroClientes();
+						cadastroCliente();
 						break;
 					case 1:
+						Menu menuPesqClientes = new Menu("Pesquisar Cliente", opsMenuPesqClientes);
+						menuPesqClientes.show();
+						int opPesqClientes = menuPesqClientes.getOption();
+						do{
+							switch(opPesqClientes){
+							case 0:
+								pesqCliCodigo();
+								Menu menuCliCodRemAlt = new Menu("Pesquisar por Código", opsRemoverAlterar);
+								menuCliCodRemAlt.show();
+								int opCliCodRemAlt = menuCliCodRemAlt.getOption();
+								do{
+									switch(opCliCodRemAlt){
+									case 0:
+										removerCliente();
+										break;
+									case 1:
+										alterarCliente();
+										break;
+									case 99:
+										break;
+									default:
+										System.out.println("Opção Inválida");
+										break;
+									}
+									menuCliCodRemAlt.show();
+									opCliCodRemAlt = menuCliCodRemAlt.getOption();
+								}while(opCliCodRemAlt != 99);
+								break;
+							case 1:
+								pesqCliNome();
+								break;
+							case 99:
+								break;
+							default:
+								System.out.println("Opção inválida!");
+								break;
+							}
+							menuPesqClientes.show();
+							opPesqClientes = menuPesqClientes.getOption();
+						}while(opPesqClientes != 99);
 						break;
 					case 99:
 						break;
@@ -55,7 +96,7 @@ public class Natura{
 				}while(opClientes != 99);
 				break;
 			case 1:
-				/*Menu menuPedidos = new Menu("Pedidos", opsMenuPedidos);
+				Menu menuPedidos = new Menu("Pedidos", opsMenuPedidos);
 				menuPedidos.show();
 				
 				int opPedidos = menuPedidos.getOption();
@@ -65,7 +106,7 @@ public class Natura{
 						//registroPedidos(pesquisaClientes(), consultaProdutos());
 						break;
 					case 1:
-						Cliente cli = new Cliente();
+						/*Cliente cli = new Cliente();
 						Produto prod = new Produto();
 						Pedido ped = pesquisaPedidos();
 						if(ped != null && ped.getIdPedido() != 0){
@@ -83,7 +124,9 @@ public class Natura{
 							System.out.println("---------------------------------");
     						System.out.println("ERRO: Pedido não encontrado!");
     						System.out.println("---------------------------------");
-						}
+						}*/
+						break;
+					case 99:
 						break;
 					default:
 						System.out.println("Opção inválida!");
@@ -91,10 +134,10 @@ public class Natura{
 					}
 					menuPedidos.show();
 					opPedidos = menuPedidos.getOption();
-				}while(opPedidos != 99);*/
+				}while(opPedidos != 99);
 				break;
 			case 2:
-				/*Menu menuProdutos = new Menu("Produtos", opsMenuProdutos);
+				Menu menuProdutos = new Menu("Produtos", opsMenuProdutos);
 				menuProdutos.show();
 				
 				int opProdutos = menuProdutos.getOption();
@@ -104,7 +147,7 @@ public class Natura{
 						cadastroProdutos();
 						break;
 					case 1:
-						Produto prod = pesquisaProdutos();
+						/*Produto prod = pesquisaProdutos();
 						if(prod != null && prod.getCodigoProd() != 0){
 							System.out.println("---------------------------------");
 							System.out.println("Produto encontrado!");
@@ -120,7 +163,9 @@ public class Natura{
 							System.out.println("---------------------------------");
     						System.out.println("ERRO: Produto não encontrado!");
     						System.out.println("---------------------------------");
-						}
+						}*/
+						break;
+					case 99:
 						break;
 					default:
 						System.out.println("Opção inválida!");
@@ -128,7 +173,7 @@ public class Natura{
 					}
 					menuProdutos.show();
 					opProdutos = menuProdutos.getOption();
-				}while(opProdutos != 99);*/
+				}while(opProdutos != 99);
 				break;
 			case 3:
 				Menu menuEstoque = new Menu("Estoque", opsMenuEstoque);
@@ -142,6 +187,8 @@ public class Natura{
 						break;
 					case 1:
 						//relatorioEstoque();
+						break;
+					case 99:
 						break;
 					default:
 						System.out.println("Opção inválida!");
@@ -168,14 +215,10 @@ public class Natura{
 	//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	//Cadastros
 	
-		public static void cadastroClientes(){
+		public static void cadastroCliente(){
 			Cliente clientes = new Cliente();
 			if(clientes != null && clientes.getTelefoneCliente() != 0){
 				clientes.createCliente();
-				clientes.save();
-				System.out.println("---------------------------------");
-				System.out.println("Cliente cadastrado com sucesso!");
-				System.out.println("---------------------------------");
 				clientes.mostraCliente();
 				System.out.println("---------------------------------");
 			}else{
@@ -204,10 +247,7 @@ public class Natura{
 		public static void cadastroProdutos(){
 			Produto produtos = new Produto();
 			if(produtos != null && produtos.getCodigoProd() != 0){
-				produtos.save();
-				System.out.println("---------------------------------");
-				System.out.println("Produto cadastrado com sucesso!");
-				System.out.println("---------------------------------");
+				produtos.createProduto();
 				produtos.mostraProduto();
 				System.out.println("---------------------------------");
 			}else{
@@ -221,22 +261,23 @@ public class Natura{
 		//Pesquisas
 		
 		//Pesquisar Cliente por Código
-		/*public static Cliente pesqCliCodigo(){
+		public static Cliente pesqCliCodigo(){
 			long pesquisaCliCod = 0;
 			try{
 				System.out.println("Código do Cliente: ");
 				pesquisaCliCod = scan.nextLong();
 				scan.nextLine();
 				DBConnection conn = new DBConnection();				
-				conn.executeSQL("select * from clientes where idCliente = '"+pesquisaCliCod+"'");
+				conn.executeSQLCliente("select * from clientes where idCliente = '"+pesquisaCliCod+"'");
 				for (Cliente cli : listaClientes){
-					if (cli.getTelefoneCliente() == pesquisaCliCod){               
-						cli.setIdCliente(listaClientes.indexOf(cli));  
+					if (cli.getTelefoneCliente() == pesquisaCliCod){                 
 						return cli;
 					}
 				}   	
 			}catch(InputMismatchException e){
+				System.out.println("---------------------------------");
 				System.out.println("ERRO: Digite somente números!");
+				System.out.println("---------------------------------");
 				scan.nextLine();
 			}
 				return null;
@@ -245,21 +286,17 @@ public class Natura{
 		//Pesquisar Cliente por Nome
 		public static Cliente pesqCliNome(){
 			String pesquisaCliNome = "";
-			try {
-				System.out.println("Nome do Cliente: ");
-				pesquisaCliNome = scan.nextLine();
-				for(Cliente cliente: listaClientes){
-					if(cliente.getNomeCliente() == pesquisaCliNome){
-						cliente.setIdCliente(listaClientes.indexOf(cliente));
-						return cliente;
-					}
+			System.out.println("Nome do Cliente: ");
+			pesquisaCliNome = scan.nextLine();
+			DBConnection conn = new DBConnection();
+			conn.executeSQLCliente("select * from clientes where Nome = '"+pesquisaCliNome+"'");
+			for (Cliente cli : listaClientes){
+				if (cli.getNomeCliente() == pesquisaCliNome){                
+					return cli;						
 				}
-			}catch(InputMismatchException e){
-				System.out.println("ERRO: Digite somente números!");
-				scan.nextLine();
 			}
-				return null;
-		}*/
+			return null;
+		}
 		
 		public static Pedido pesquisaPedidos(){
 			long pesquisa = 0;
@@ -286,8 +323,7 @@ public class Natura{
 	        	pesquisa = scan.nextLong();
 	        	scan.nextLine();
 	        	for (Produto prod : listaProdutos) {
-	        		if (prod.getCodigoProd() == pesquisa){               
-	        			prod.setIdProduto(listaProdutos.indexOf(prod));  
+	        		if (prod.getCodigoProd() == pesquisa){ 
 	        			return prod;
 	        		}
 	        	}
@@ -296,19 +332,18 @@ public class Natura{
 			}
         		return null;
 		}
+
+		
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		//Remoções
+
+		public static void removerCliente(){
+							
+		}
+		
+		public static void alterarCliente(){
+			
+		}
+		
+		
 }
-		
-		//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-		//Listas
-		
-		/*public static void listaClientes(){
-    		System.out.println("Dados dos Cliente:");
-    		System.out.println("---------------------------------");
-    		int pos = 0;
-    		for (Cliente clientes : listaClientes){
-    			pos += 1;
-    			System.out.println("Número: " + pos);
-    			clientes.mostraCliente();
-    			System.out.println("---------------------------------");    		
-    		}
-    	}*/

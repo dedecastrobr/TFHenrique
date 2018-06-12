@@ -105,7 +105,7 @@ public class Cliente{
 		Connection conn = (new DBConnection()).getConn();
 		Statement stmt = null;
 		
-		String sql = "insert into clientes(Telefone, Nome, Endereco, Email) values('" + this.telefoneCliente + "','" + this.nomeCliente + "','" + this.enderecoCliente + "'," + this.emailCliente + ")";
+		String sql = "insert into clientes(Telefone, Nome, Endereco, Email) values('" + this.telefoneCliente + "','" + this.nomeCliente + "','" + this.enderecoCliente + "','" + this.emailCliente + "')";
 		System.out.println(sql);
 		try {
 			stmt = conn.createStatement();
@@ -114,17 +114,14 @@ public class Cliente{
 			}else {
 				int count = stmt.getUpdateCount();
 				if (count >= 1) {
-					System.out.println("Registro Inserido com sucesso!");
+					System.out.println("---------------------------------");
+					System.out.println("Cliente cadastrado com sucesso!");
+					System.out.println("---------------------------------");
 				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public boolean save(){
-		Natura.listaClientes.add(this);
-		return true;
 	}
 	
 	public void updateCliente(){

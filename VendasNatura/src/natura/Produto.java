@@ -1,15 +1,19 @@
 package natura;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Produto{
 	
 	private int paginaProd = 0;
-	private long codigoProd = 0;
+	private int codigoProd = 0;
 	private String descricaoProd = "";
 	private Double precoProd = 0.00;
 	private int idProduto = 0;
+	private int qtdEstoque = 0;
 
 	//Pedido - Produto
 	private Pedido pedidoProduto = null;
@@ -21,7 +25,7 @@ public class Produto{
 		return paginaProd;
 	}
 	
-	public long getCodigoProd(){
+	public int getCodigoProd(){
 		return codigoProd;
 	}
 	
@@ -37,6 +41,10 @@ public class Produto{
 		return idProduto;
 	}
 	
+	public int getQtdEstoque(){
+		return qtdEstoque;
+	}
+	
 	//Get Pedidos - Produtos
 	public Pedido getpedidoProduto() {
 		return pedidoProduto;
@@ -47,7 +55,7 @@ public class Produto{
 		this.paginaProd = paginaProd;
 	}
 	
-	public void setCodigoProd(long codigoProd){
+	public void setCodigoProd(int codigoProd){
 		this.codigoProd = codigoProd;
 	}
 
@@ -63,12 +71,16 @@ public class Produto{
 		this.idProduto = idProduto;
 	}
 	
+	public void setQtdEstoque(int qtdEstoque){
+		this.qtdEstoque = qtdEstoque;
+	}
+	
 	//Set Pedido - Produto
 	public void setPedidoProduto(Pedido pedidoProduto) {
 		this.pedidoProduto = pedidoProduto;
 	}
 	
-	public Produto(int paginaProd, long codigoProd, String descricaoProd, Double precoProd, Pedido pedido){
+	public Produto(int paginaProd, int codigoProd, String descricaoProd, Double precoProd, int qtdEstoque, Pedido pedido){
 		this.paginaProd = paginaProd;
 		this.codigoProd = codigoProd;
 		this.descricaoProd = descricaoProd;
@@ -76,7 +88,7 @@ public class Produto{
 		this.pedidoProduto = pedido;
 	}
 	
-	public Produto(int paginaProd, long codigoProd, String descricaoProd, Double precoProd){
+	public Produto(int paginaProd, int codigoProd, String descricaoProd, Double precoProd, int qtdEstoque){
 		this.paginaProd = paginaProd;
 		this.codigoProd = codigoProd;
 		this.descricaoProd = descricaoProd;
@@ -95,7 +107,7 @@ public class Produto{
 		
 		try{
 			System.out.println("Código do Produto: ");
-			this.codigoProd = scan.nextLong();
+			this.codigoProd = scan.nextInt();
 			scan.nextLine();
 		}catch(InputMismatchException e){
 			System.out.println("ERRO: Digite somente números!");
@@ -113,6 +125,15 @@ public class Produto{
 			System.out.println("ERRO: Digite somente números!");
 			scan.nextLine();
 		}		
+		
+		try{
+			System.out.println("Quantidade em Estoque: ");
+			this.qtdEstoque = scan.nextInt();
+			scan.nextLine();
+		}catch(InputMismatchException e){
+			System.out.println("ERRO: Digite somente números!");
+			scan.nextLine();
+		}
 	}
 	
 	public Produto(Pedido pedido){
@@ -127,7 +148,7 @@ public class Produto{
 		
 		try{
 			System.out.println("Código do Produto: ");
-			this.codigoProd = scan.nextLong();
+			this.codigoProd = scan.nextInt();
 			scan.nextLine();
 			pedidoProduto = pedido;
 		}catch(InputMismatchException e){
@@ -146,11 +167,38 @@ public class Produto{
 			System.out.println("ERRO: Digite somente números!");
 			scan.nextLine();
 		}		
+		
+		try{
+			System.out.println("Quantidade em Estoque: ");
+			this.qtdEstoque = scan.nextInt();
+			scan.nextLine();
+		}catch(InputMismatchException e){
+			System.out.println("ERRO: Digite somente números!");
+			scan.nextLine();
+		}
 	}
 	
-	public boolean save(){
-		Natura.listaProdutos.add(this);
-		return true;
+	public void createProduto(){
+		Connection conn = (new DBConnection()).getConn();
+		Statement stmt = null;
+		
+		String sql = "insert into produtos(CodProduto, Descricao, Preco, Pagina, QtdEstoque) values('" + this.codigoProd + "','" + this.descricaoProd + "','" + this.precoProd + "','" + this.paginaProd +"','" + this.qtdEstoque + "')";
+		System.out.println(sql);
+		try {
+			stmt = conn.createStatement();
+			if(stmt.execute(sql)) {
+				System.out.println("Não funcionou");
+			}else {
+				int count = stmt.getUpdateCount();
+				if (count >= 1) {
+					System.out.println("---------------------------------");
+					System.out.println("Produto cadastrado com sucesso!");
+					System.out.println("---------------------------------");
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void updateProdutos(){
@@ -165,7 +213,7 @@ public class Produto{
 		
 		try{
 			System.out.println("Novo Código do Produto: ");
-			this.codigoProd = scan.nextLong();
+			this.codigoProd = scan.nextInt();
 			scan.nextLine();
 		}catch(InputMismatchException e){
 			System.out.println("ERRO: Digite somente números!");

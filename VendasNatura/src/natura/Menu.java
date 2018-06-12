@@ -36,13 +36,4 @@ public class Menu{
 		}		
 		return opSelecionada;
 	}	
-	 
-	/*public boolean checkValue(String value){
-		try{
-			int x = Integer.parseInt(value);
-			return true;
-		}catch(Exception e){
-			return false;
-		}
-	}*/
 }
