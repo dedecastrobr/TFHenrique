@@ -19,7 +19,7 @@ public class Natura{
 	public static List<String> opsMenuEstoque =  Arrays.asList("Atualizar Estoque", "Relatório de Estoque");
 	
 	public static List<String> opsMenuPesqClientes = Arrays.asList("Pesquisar por Código", "Pesquisar por Nome");
-	public static List<String> opsRemoverAlterar = Arrays.asList("Remover", "Alterar");
+	//public static List<String> opsRemoverAlterar = Arrays.asList("Remover", "Alterar");
 	
 	public static Scanner scan = new Scanner(System.in);
 	
@@ -51,26 +51,6 @@ public class Natura{
 							switch(opPesqClientes){
 							case 0:
 								pesqCliCodigo();
-								Menu menuCliCodRemAlt = new Menu("Pesquisar por Código", opsRemoverAlterar);
-								menuCliCodRemAlt.show();
-								int opCliCodRemAlt = menuCliCodRemAlt.getOption();
-								do{
-									switch(opCliCodRemAlt){
-									case 0:
-										removerCliente();
-										break;
-									case 1:
-										alterarCliente();
-										break;
-									case 99:
-										break;
-									default:
-										System.out.println("Opção Inválida");
-										break;
-									}
-									menuCliCodRemAlt.show();
-									opCliCodRemAlt = menuCliCodRemAlt.getOption();
-								}while(opCliCodRemAlt != 99);
 								break;
 							case 1:
 								pesqCliNome();
@@ -78,7 +58,9 @@ public class Natura{
 							case 99:
 								break;
 							default:
+								System.out.println("---------------------------------");
 								System.out.println("Opção inválida!");
+								System.out.println("---------------------------------");
 								break;
 							}
 							menuPesqClientes.show();
@@ -88,7 +70,9 @@ public class Natura{
 					case 99:
 						break;
 					default:
+						System.out.println("---------------------------------");
 						System.out.println("Opção inválida!");
+						System.out.println("---------------------------------");
 						break;
 					}
 					menuClientes.show();
@@ -129,7 +113,9 @@ public class Natura{
 					case 99:
 						break;
 					default:
+						System.out.println("---------------------------------");
 						System.out.println("Opção inválida!");
+						System.out.println("---------------------------------");
 						break;
 					}
 					menuPedidos.show();
@@ -168,7 +154,9 @@ public class Natura{
 					case 99:
 						break;
 					default:
+						System.out.println("---------------------------------");
 						System.out.println("Opção inválida!");
+						System.out.println("---------------------------------");
 						break;
 					}
 					menuProdutos.show();
@@ -191,7 +179,9 @@ public class Natura{
 					case 99:
 						break;
 					default:
+						System.out.println("---------------------------------");
 						System.out.println("Opção inválida!");
+						System.out.println("---------------------------------");
 						break;
 					}
 					menuEstoque.show();
@@ -204,7 +194,9 @@ public class Natura{
 				break;
 
 			default:
+				System.out.println("---------------------------------");
 				System.out.println("Opção inválida!");
+				System.out.println("---------------------------------");
 				break;
 			}
 			menu.show();
@@ -270,10 +262,10 @@ public class Natura{
 				DBConnection conn = new DBConnection();				
 				conn.executeSQLCliente("select * from clientes where idCliente = '"+pesquisaCliCod+"'");
 				for (Cliente cli : listaClientes){
-					if (cli.getTelefoneCliente() == pesquisaCliCod){                 
+					if (cli.getTelefoneCliente() == pesquisaCliCod){   
 						return cli;
 					}
-				}   	
+				}   
 			}catch(InputMismatchException e){
 				System.out.println("---------------------------------");
 				System.out.println("ERRO: Digite somente números!");
@@ -335,10 +327,19 @@ public class Natura{
 
 		
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-		//Remoções
+		//Deleções
 
-		public static void removerCliente(){
-							
+		public static void deletarCliente(){
+			System.out.println("Tem certeza de que deseja remover o cliente?:");
+			System.out.println("0 - Sim" +"\n1 - Não");
+			int opSimNao = scan.nextInt();
+			scan.nextLine();
+			switch(opSimNao){
+			case 0:
+				DBConnection conn = new DBConnection();				
+				conn.executeSQLCliente("delete from clientes where idCliente = '"+opSimNao+"'");
+				System.out.println("Cliente removido com sucesso!");
+			}
 		}
 		
 		public static void alterarCliente(){

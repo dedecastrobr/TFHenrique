@@ -49,12 +49,29 @@ public class DBConnection {
 					System.out.println("------------------------------------------------");
 					System.out.println("Cliente encontrado!");
 					System.out.println("------------------------------------------------");
-					System.out.println("idCliente: " + rs.getInt(1));
-					System.out.println("Telefone: " + rs.getInt(2));
-					System.out.println("Nome: " + rs.getString(3));
-					System.out.println("Endereço: " + rs.getString(4));
-					System.out.println("Email: " + rs.getString(5));
+					System.out.println("idCliente: " + rs.getInt(1) + " \nTelefone: " + rs.getInt(2) + "\nNome: " + rs.getString(3) + "\nEndereço: " + rs.getString(4) + "\nEmail: " + rs.getString(5));
 					System.out.println("------------------------------------------------");
+					System.out.println("0 - Remover Cliente" + "\n1 - Alterar Cliente");
+					System.out.println("99 - Sair");
+					int opRemAlt = Menu.scan.nextInt();
+					Menu.scan.nextLine();
+					switch(opRemAlt){
+					case 0:
+						System.out.println("------------------------------------------------");
+						System.out.println("idCliente: " + rs.getInt(1) + " \nTelefone: " + rs.getInt(2) + "\nNome: " + rs.getString(3) + "\nEndereço: " + rs.getString(4) + "\nEmail: " + rs.getString(5));
+						System.out.println("------------------------------------------------");
+						Natura.deletarCliente();
+					case 1:
+						System.out.println("");
+						break;
+					case 99:
+						break;
+					default:
+						System.out.println("---------------------------------");
+						System.out.println("Opção inválida!");
+						System.out.println("---------------------------------");
+						break;
+					}
 				}
 			} else {
 				int count = stmt.getUpdateCount();
@@ -67,6 +84,14 @@ public class DBConnection {
 		}
 	}
 	
+	public void deletarCliente(){
+		long busca = 0;
+		busca = Menu.scan.nextLong();
+		Menu.scan.nextLine();
+		DBConnection conn = new DBConnection();				
+		conn.executeSQLCliente("delete from clientes where idCliente = '"+busca+"'");
+	}
+
 	public void executeSQLProd(String sql) {
 		Statement stmt = null;
 		ResultSet rs = null;

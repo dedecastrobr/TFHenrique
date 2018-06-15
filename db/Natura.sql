@@ -35,9 +35,9 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `Natura`.`Pedidos` (
   `idPedido` INT NOT NULL AUTO_INCREMENT,
   `PrecoTotal` FLOAT NOT NULL,
-  `Data_Pedido` DATETIME NOT NULL,
+  `DataPedido` DATETIME NOT NULL,
   `Clientes_idCliente` INT NOT NULL,
-  `Data_Venda` DATETIME NULL,
+  `DataVenda` DATETIME NULL,
   PRIMARY KEY (`idPedido`, `Clientes_idCliente`),
   UNIQUE INDEX `idPedido_UNIQUE` (`idPedido` ASC),
   INDEX `fk_Pedidos_Clientes1_idx` (`Clientes_idCliente` ASC),
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `Natura`.`Produtos` (
   `Descricao` VARCHAR(45) NOT NULL,
   `Preco` FLOAT NOT NULL,
   `Pagina` INT(4) NOT NULL,
-  `Qtd_Estoque` INT NOT NULL,
+  `QtdEstoque` INT NOT NULL,
   PRIMARY KEY (`idProd`, `CodProduto`),
   UNIQUE INDEX `CodProd_UNIQUE` (`idProd` ASC),
   UNIQUE INDEX `CodProduto_UNIQUE` (`CodProduto` ASC))

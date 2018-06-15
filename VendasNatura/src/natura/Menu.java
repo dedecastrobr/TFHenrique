@@ -31,7 +31,9 @@ public class Menu{
 			opSelecionada = scan.nextInt();
 			scan.nextLine();
 		} catch (Exception e) {
+			System.out.println("---------------------------------");
 			System.out.println("Erro de valor! Somente números!");
+			System.out.println("---------------------------------");
 			scan.nextLine();
 		}		
 		return opSelecionada;
