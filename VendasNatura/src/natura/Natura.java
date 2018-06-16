@@ -16,16 +16,16 @@ public class Natura{
 	public static List<String> opsMenuClientes = Arrays.asList("Cadastrar Cliente", "Pesquisar Cliente");
 	public static List<String> opsMenuPedidos = Arrays.asList("Cadastrar Pedido", "Pesquisar Pedido");
 	public static List<String> opsMenuProdutos = Arrays.asList("Cadastrar Produto", "Pesquisar Produto");
-	public static List<String> opsMenuEstoque =  Arrays.asList("Atualizar Estoque", "Relatório de Estoque");
+	public static List<String> opsMenuEstoque =  Arrays.asList("Atualizar Estoque", "Relatï¿½rio de Estoque");
 	
-	public static List<String> opsMenuPesqClientes = Arrays.asList("Pesquisar por Código", "Pesquisar por Nome");
+	public static List<String> opsMenuPesqClientes = Arrays.asList("Pesquisar por Cï¿½digo", "Pesquisar por Nome");
 	//public static List<String> opsRemoverAlterar = Arrays.asList("Remover", "Alterar");
 	
 	public static Scanner scan = new Scanner(System.in);
 	
 	public static void main(String args[]){
 		
-		System.out.println("Bem-vindo à  Natura!");
+		System.out.println("Bem-vindo ï¿½ Natura!");
 		
 		Menu menu = new Menu("Menu Principal", opsMenuPrincipal);
 		menu.show();
@@ -59,7 +59,7 @@ public class Natura{
 								break;
 							default:
 								System.out.println("---------------------------------");
-								System.out.println("Opção inválida!");
+								System.out.println("Opï¿½ï¿½o invï¿½lida!");
 								System.out.println("---------------------------------");
 								break;
 							}
@@ -71,7 +71,7 @@ public class Natura{
 						break;
 					default:
 						System.out.println("---------------------------------");
-						System.out.println("Opção inválida!");
+						System.out.println("Opï¿½ï¿½o invï¿½lida!");
 						System.out.println("---------------------------------");
 						break;
 					}
@@ -106,7 +106,7 @@ public class Natura{
 							System.out.println("---------------------------------");
 						}else{
 							System.out.println("---------------------------------");
-    						System.out.println("ERRO: Pedido não encontrado!");
+    						System.out.println("ERRO: Pedido nï¿½o encontrado!");
     						System.out.println("---------------------------------");
 						}*/
 						break;
@@ -114,7 +114,7 @@ public class Natura{
 						break;
 					default:
 						System.out.println("---------------------------------");
-						System.out.println("Opção inválida!");
+						System.out.println("Opï¿½ï¿½o invï¿½lida!");
 						System.out.println("---------------------------------");
 						break;
 					}
@@ -147,7 +147,7 @@ public class Natura{
 							System.out.println("---------------------------------");
 						}else{
 							System.out.println("---------------------------------");
-    						System.out.println("ERRO: Produto não encontrado!");
+    						System.out.println("ERRO: Produto nï¿½o encontrado!");
     						System.out.println("---------------------------------");
 						}*/
 						break;
@@ -155,7 +155,7 @@ public class Natura{
 						break;
 					default:
 						System.out.println("---------------------------------");
-						System.out.println("Opção inválida!");
+						System.out.println("Opï¿½ï¿½o invï¿½lida!");
 						System.out.println("---------------------------------");
 						break;
 					}
@@ -180,7 +180,7 @@ public class Natura{
 						break;
 					default:
 						System.out.println("---------------------------------");
-						System.out.println("Opção inválida!");
+						System.out.println("Opï¿½ï¿½o invï¿½lida!");
 						System.out.println("---------------------------------");
 						break;
 					}
@@ -195,7 +195,7 @@ public class Natura{
 
 			default:
 				System.out.println("---------------------------------");
-				System.out.println("Opção inválida!");
+				System.out.println("Opï¿½ï¿½o invï¿½lida!");
 				System.out.println("---------------------------------");
 				break;
 			}
@@ -252,15 +252,15 @@ public class Natura{
 		//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		//Pesquisas
 		
-		//Pesquisar Cliente por Código
+		//Pesquisar Cliente por Cï¿½digo
 		public static Cliente pesqCliCodigo(){
 			long pesquisaCliCod = 0;
 			try{
-				System.out.println("Código do Cliente: ");
+				System.out.println("Cï¿½digo do Cliente: ");
 				pesquisaCliCod = scan.nextLong();
 				scan.nextLine();
 				DBConnection conn = new DBConnection();				
-				conn.executeSQLCliente("select * from clientes where idCliente = '"+pesquisaCliCod+"'");
+				conn.executeSQLCliente("select * from Clientes where idCliente = '"+pesquisaCliCod+"'");
 				for (Cliente cli : listaClientes){
 					if (cli.getTelefoneCliente() == pesquisaCliCod){   
 						return cli;
@@ -268,7 +268,7 @@ public class Natura{
 				}   
 			}catch(InputMismatchException e){
 				System.out.println("---------------------------------");
-				System.out.println("ERRO: Digite somente números!");
+				System.out.println("ERRO: Digite somente nï¿½meros!");
 				System.out.println("---------------------------------");
 				scan.nextLine();
 			}
@@ -293,7 +293,7 @@ public class Natura{
 		public static Pedido pesquisaPedidos(){
 			long pesquisa = 0;
 			try{
-				System.out.println("Código do Pedido: ");
+				System.out.println("Cï¿½digo do Pedido: ");
 	        	pesquisa = scan.nextInt();
 	        	scan.nextLine();
 	        	for (Pedido ped : listaPedidos) {
@@ -303,7 +303,7 @@ public class Natura{
 	        		}
 	        	}
 			}catch(InputMismatchException e){
-				System.out.println("ERRO: Digite somente números!");
+				System.out.println("ERRO: Digite somente nï¿½meros!");
 			}
         		return null;
 		}
@@ -311,7 +311,7 @@ public class Natura{
 		public static Produto pesquisaProdutos(){
 			long pesquisa = 0;
 			try{
-	    		System.out.println("Código do Produto: ");
+	    		System.out.println("Cï¿½digo do Produto: ");
 	        	pesquisa = scan.nextLong();
 	        	scan.nextLine();
 	        	for (Produto prod : listaProdutos) {
@@ -320,24 +320,22 @@ public class Natura{
 	        		}
 	        	}
 			}catch(InputMismatchException e){
-				System.out.println("ERRO: Digite somente números!");
+				System.out.println("ERRO: Digite somente nï¿½meros!");
 			}
         		return null;
 		}
 
 		
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-		//Deleções
+		//Deleï¿½ï¿½es
 
-		public static void deletarCliente(){
-			System.out.println("Tem certeza de que deseja remover o cliente?:");
-			System.out.println("0 - Sim" +"\n1 - Não");
-			int opSimNao = scan.nextInt();
-			scan.nextLine();
-			switch(opSimNao){
-			case 0:
+		public static void deletarCliente(int id){
+			System.out.println("Tem certeza de que deseja remover o cliente? (S/N):");
+			String opSimNao = scan.nextLine();
+			switch(opSimNao.charAt(0)){
+			case 'S': case 's':
 				DBConnection conn = new DBConnection();				
-				conn.executeSQLCliente("delete from clientes where idCliente = '"+opSimNao+"'");
+				conn.executeSQLCliente("delete from Clientes where idCliente = '"+id+"'");
 				System.out.println("Cliente removido com sucesso!");
 			}
 		}

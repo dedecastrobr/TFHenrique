@@ -5,14 +5,17 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Scanner;
 
 public class DBConnection {
 
-	static String bd = "natura";
+	static String bd = "Natura";
 	static String user = "root";
 	static String password = "amazingday250193";
 	static String url = "jdbc:mysql://localhost/"+bd+"?useTimezone=true&serverTimezone=UTC";
 	Connection conn = null;
+	
+	public static Scanner scan = new Scanner(System.in);
 
 	public DBConnection() {
 
@@ -49,7 +52,7 @@ public class DBConnection {
 					System.out.println("------------------------------------------------");
 					System.out.println("Cliente encontrado!");
 					System.out.println("------------------------------------------------");
-					System.out.println("idCliente: " + rs.getInt(1) + " \nTelefone: " + rs.getInt(2) + "\nNome: " + rs.getString(3) + "\nEndereço: " + rs.getString(4) + "\nEmail: " + rs.getString(5));
+					System.out.println("idCliente: " + rs.getInt(1) + " \nTelefone: " + rs.getInt(2) + "\nNome: " + rs.getString(3) + "\nEndereï¿½o: " + rs.getString(4) + "\nEmail: " + rs.getString(5));
 					System.out.println("------------------------------------------------");
 					System.out.println("0 - Remover Cliente" + "\n1 - Alterar Cliente");
 					System.out.println("99 - Sair");
@@ -58,9 +61,27 @@ public class DBConnection {
 					switch(opRemAlt){
 					case 0:
 						System.out.println("------------------------------------------------");
-						System.out.println("idCliente: " + rs.getInt(1) + " \nTelefone: " + rs.getInt(2) + "\nNome: " + rs.getString(3) + "\nEndereço: " + rs.getString(4) + "\nEmail: " + rs.getString(5));
+						System.out.println("idCliente: " + rs.getInt(1) + " \nTelefone: " + rs.getInt(2) + "\nNome: " + rs.getString(3) + "\nEndereï¿½o: " + rs.getString(4) + "\nEmail: " + rs.getString(5));
 						System.out.println("------------------------------------------------");
-						Natura.deletarCliente();
+						//Natura.deletarCliente(rs.getInt(1));
+						System.out.println("Tem certeza de que deseja remover o cliente? (S/N):");
+						String opSimNao = scan.nextLine();
+						switch(opSimNao.charAt(0)){
+						case 'S': case 's':
+							if (stmt.execute("delete from Clientes where idCliente = '"+rs.getInt(1)+"'")) {
+								System.out.println("Cliente removido com sucesso!");
+							}else{
+								System.out.println("ERRO: Falha na remoÃ§Ã£o do cliente!");
+							}
+							break;
+						case 'N': case 'n':
+							break;
+						default:
+							System.out.println("---------------------------------");
+							System.out.println("OpÃ§Ã£o invÃ¡lida!");
+							System.out.println("---------------------------------");
+							break;
+						}
 					case 1:
 						System.out.println("");
 						break;
@@ -68,7 +89,7 @@ public class DBConnection {
 						break;
 					default:
 						System.out.println("---------------------------------");
-						System.out.println("Opção inválida!");
+						System.out.println("Opï¿½ï¿½o invï¿½lida!");
 						System.out.println("---------------------------------");
 						break;
 					}
@@ -82,14 +103,6 @@ public class DBConnection {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public void deletarCliente(){
-		long busca = 0;
-		busca = Menu.scan.nextLong();
-		Menu.scan.nextLine();
-		DBConnection conn = new DBConnection();				
-		conn.executeSQLCliente("delete from clientes where idCliente = '"+busca+"'");
 	}
 
 	public void executeSQLProd(String sql) {
