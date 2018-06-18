@@ -116,7 +116,7 @@ public class Pedido{
 		System.out.println("Realizado por: " + cli.getNomeCliente());
 		System.out.println("Página: " + prod.getPaginaProd());
 		System.out.println("Código do Produto: " + prod.getCodigoProd());
-		System.out.println("Descrição: " + prod.getDescricaoProd());
+		System.out.println("Descricão: " + prod.getDescricaoProd());
 		System.out.println("Preço: " + prod.getPrecoProd());
 		System.out.println("Preço Total: " + this.precoTotal);
 		System.out.println("Data: " + this.data);
