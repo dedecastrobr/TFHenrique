@@ -1,7 +1,7 @@
 package natura;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
+//import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.InputMismatchException;
@@ -86,7 +86,7 @@ public class Cliente{
 		System.out.println("Nome: ");
 		this.nomeCliente = scan.nextLine();
 		
-		System.out.println("Endereço: ");
+		System.out.println("Endereï¿½o: ");
 		this.enderecoCliente = scan.nextLine();
 		
 		System.out.println("Email: ");
@@ -97,7 +97,7 @@ public class Cliente{
 			this.telefoneCliente = scan.nextLong();
 			scan.nextLine();
 		}catch(InputMismatchException e){
-			System.out.println("ERRO: Digite somente números!");
+			System.out.println("ERRO: Digite somente nï¿½meros!");
 			scan.nextLine();
 		}
 	}
@@ -111,7 +111,7 @@ public class Cliente{
 		try {
 			stmt = conn.createStatement();
 			if(stmt.execute(sql)) {
-				System.out.println("Não funcionou");
+				System.out.println("Nï¿½o funcionou");
 			}else {
 				int count = stmt.getUpdateCount();
 				if (count >= 1) {
@@ -134,7 +134,7 @@ public class Cliente{
 		try {
 			stmt = conn.createStatement();
 			if(stmt.execute(sql)) {
-				System.out.println("Não funcionou");
+				System.out.println("Nï¿½o funcionou");
 			}else {
 				int count = stmt.getUpdateCount();
 				if (count >= 1) {
@@ -152,7 +152,7 @@ public class Cliente{
 		System.out.println("Novo Nome: ");
 		this.nomeCliente = scan.nextLine();
 		
-		System.out.println("Novo Endereço: ");
+		System.out.println("Novo Endereï¿½o: ");
 		this.enderecoCliente = scan.nextLine();
 		
 		System.out.println("Novo Email: ");
@@ -163,7 +163,7 @@ public class Cliente{
 			this.telefoneCliente = scan.nextLong();
 			scan.nextLine();
 		}catch(InputMismatchException e){
-			System.out.println("ERRO: Digite somente números!");
+			System.out.println("ERRO: Digite somente nï¿½meros!");
 			scan.nextLine();
 		}
 	}
@@ -176,7 +176,7 @@ public class Cliente{
 	public void mostraCliente(){
 		System.out.println("Cliente:");
 		System.out.println("Nome: " + this.nomeCliente);
-		System.out.println("Endereço: " + this.enderecoCliente);
+		System.out.println("Endereï¿½o: " + this.enderecoCliente);
 		System.out.println("Email: " + this.emailCliente);
 		System.out.println("Telefone: " + this.telefoneCliente);
 	}
