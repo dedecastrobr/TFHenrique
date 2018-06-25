@@ -9,7 +9,9 @@ public class Pedido{
 	
 	//Atributos
 	private Double precoTotal = 0.00;
-	private String data = "";
+	private String dataPedido = "";
+	private String status = "";
+	private String dataVenda = "";
 	private int idPedido = 0;
 	
 	//Cliente - Pedido
@@ -25,8 +27,16 @@ public class Pedido{
 		return precoTotal;
 	}
 	
-	public String getData(){
-		return data;
+	public String getDataPedido(){
+		return dataPedido;
+	}
+	
+	public String getStatus(){
+		return status;
+	}
+	
+	public String dataVenda(){
+		return dataVenda;
 	}
 	
 	public int getIdPedido(){
@@ -48,8 +58,16 @@ public class Pedido{
 		this.precoTotal = precoTotal;
 	}
 
-	public void setData(String data){
-		this.data = data;
+	public void setDataPedido(String dataPedido){
+		this.dataPedido = dataPedido;
+	}
+	
+	public void setStatus(String status){
+		this.status = status;
+	}
+	
+	public void setDataVenda(String dataVenda){
+		this.dataVenda = dataVenda;
 	}
 	
 	public void setIdPedido(int idPedido){
@@ -66,10 +84,13 @@ public class Pedido{
 		this.listaProdutos = listaProdutos;
 	}
 	
-	public Pedido(Double precoTotal, String data, Cliente cli, Produto prod){
+	public Pedido(Double precoTotal, String dataPedido, String status, String dataVenda, Cliente cli, Produto prod){
 		this.precoTotal = precoTotal;
-		this.data = data;
+		this.dataPedido = dataPedido;
 		this.clientePedido = cli;
+		this.dataPedido = dataPedido;
+		this.status = status;
+		this.dataVenda = dataVenda;
 	}
 	
 	public Pedido(Cliente cli, Produto prod){
@@ -84,12 +105,7 @@ public class Pedido{
 		}
 		
 		System.out.println("Data do Pedido: ");
-		this.data = scan.nextLine();
-	}
-	
-	public boolean save(){
-		Natura.listaPedidos.add(this);
-		return true;
+		this.dataPedido = scan.nextLine();
 	}
 	
 	public void updatePedidos(){
@@ -103,22 +119,17 @@ public class Pedido{
 		}
 		
 		System.out.println("Nova Data do Pedido: ");
-		this.data = scan.nextLine();
+		this.dataPedido = scan.nextLine();
 	}
     
-    public boolean update(){
-    	Natura.listaPedidos.set(this.getIdPedido(), this);
-    	return true;
-    }
-	
 	public void mostraPedido(Cliente cli, Produto prod){
 		System.out.println("Pedido:");
 		System.out.println("Realizado por: " + cli.getNomeCliente());
 		System.out.println("Página: " + prod.getPaginaProd());
 		System.out.println("Código do Produto: " + prod.getCodigoProd());
-		System.out.println("Descricão: " + prod.getDescricaoProd());
+		System.out.println("Descrição: " + prod.getDescricaoProd());
 		System.out.println("Preço: " + prod.getPrecoProd());
 		System.out.println("Preço Total: " + this.precoTotal);
-		System.out.println("Data: " + this.data);
+		System.out.println("Data: " + this.dataPedido);
 	}
 }

@@ -110,7 +110,7 @@ public class Produto{
 			this.codigoProd = scan.nextInt();
 			scan.nextLine();
 		}catch(InputMismatchException e){
-			System.out.println("ERRO: Digite somente números!");
+			System.out.println("ERRO: Digite somente úumeros!");
 			scan.nextLine();			
 		}
 		
@@ -231,11 +231,6 @@ public class Produto{
 			System.out.println("ERRO: Digite somente números!");
 			scan.nextLine();
 		}
-	}
-	
-	public boolean update(){
-		Natura.listaProdutos.set(this.getIdProduto(), this);
-		return true;
 	}
 	
 	public void mostraProduto(){

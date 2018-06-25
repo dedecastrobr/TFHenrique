@@ -32,7 +32,7 @@ public class Menu{
 			scan.nextLine();
 		} catch (Exception e) {
 			System.out.println("---------------------------------");
-			System.out.println("Erro de valor! Somente números!");
+			System.out.println("ERRO: Digite somente números!");
 			System.out.println("---------------------------------");
 			scan.nextLine();
 		}		
