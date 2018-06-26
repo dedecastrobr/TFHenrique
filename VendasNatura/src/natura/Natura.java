@@ -11,15 +11,15 @@ public class Natura{
 	public static List<String> opsMenuClientes = Arrays.asList("Cadastrar Cliente", "Pesquisar Cliente", "Listar Clientes");
 	public static List<String> opsMenuPedidos = Arrays.asList("Cadastrar Pedido", "Pesquisar Pedido", "Listar Pedidos");
 	public static List<String> opsMenuProdutos = Arrays.asList("Cadastrar Produto", "Pesquisar Produto", "Listar Produtos");
-	public static List<String> opsMenuEstoque =  Arrays.asList("Atualizar Estoque", "RelatÛrio de Estoque");
+	public static List<String> opsMenuEstoque =  Arrays.asList("Atualizar Estoque", "Relat√≥rio de Estoque");
 	
-	public static List<String> opsMenuPesquisa = Arrays.asList("Pesquisar por CÛdigo", "Pesquisar por Nome");
+	public static List<String> opsMenuPesquisa = Arrays.asList("Pesquisar por C√≥digo", "Pesquisar por Nome");
 	
 	public static Scanner scan = new Scanner(System.in);
 	
 	public static void main(String args[]){
 		
-		System.out.println("Bem-vindo ‡ Natura!");
+		System.out.println("Bem-vindo √† Natura!");
 		
 		Menu menu = new Menu("Menu Principal", opsMenuPrincipal);
 		menu.show();
@@ -53,7 +53,7 @@ public class Natura{
 								break;
 							default:
 								System.out.println("---------------------------------");
-								System.out.println("OpÁ„o inv·lida!");
+								System.out.println("Op√ß√£o inv√°lida!");
 								System.out.println("---------------------------------");
 								break;
 							}
@@ -68,7 +68,7 @@ public class Natura{
 						break;
 					default:
 						System.out.println("---------------------------------");
-						System.out.println("OpÁ„o inv·lida!");
+						System.out.println("Op√ß√£o inv√°lida!");
 						System.out.println("---------------------------------");
 						break;
 					}
@@ -103,7 +103,7 @@ public class Natura{
 							System.out.println("---------------------------------");
 						}else{
 							System.out.println("---------------------------------");
-    						System.out.println("ERRO: Pedido n„o encontrado!");
+    						System.out.println("ERRO: Pedido nÔøΩo encontrado!");
     						System.out.println("---------------------------------");
 						}*/
 						break;
@@ -113,7 +113,7 @@ public class Natura{
 						break;
 					default:
 						System.out.println("---------------------------------");
-						System.out.println("OpÁ„o inv·lida!");
+						System.out.println("Op√ß√£o inv√°lida!");
 						System.out.println("---------------------------------");
 						break;
 					}
@@ -147,7 +147,7 @@ public class Natura{
 								break;
 							default:
 								System.out.println("---------------------------------");
-								System.out.println("OpÁ„o inv·lida!");
+								System.out.println("Op√ß√£o inv√°lida!");
 								System.out.println("---------------------------------");
 								break;
 							}
@@ -159,7 +159,7 @@ public class Natura{
 						break;
 					default:
 						System.out.println("---------------------------------");
-						System.out.println("OpÁ„o inv·lida!");
+						System.out.println("Op√ß√£o inv√°lida!");
 						System.out.println("---------------------------------");
 						break;
 					}
@@ -184,7 +184,7 @@ public class Natura{
 						break;
 					default:
 						System.out.println("---------------------------------");
-						System.out.println("OpÁ„o inv·lida!");
+						System.out.println("Op√ß√£o inv√°lida!");
 						System.out.println("---------------------------------");
 						break;
 					}
@@ -199,7 +199,7 @@ public class Natura{
 
 			default:
 				System.out.println("---------------------------------");
-				System.out.println("OpÁ„o inv·lida!");
+				System.out.println("Op√ß√£o inv√°lida!");
 				System.out.println("---------------------------------");
 				break;
 			}
@@ -231,17 +231,16 @@ public class Natura{
 			do{
 				switch(opPesqClientes){
 				case 0:
-					pesqCliCodigo();
-					
+					pesqCliCodPedido();
 					break;
 				case 1:
-					pesqCliNome();
+					pesqCliNomePedido();
 					break;
 				case 99:
 					break;
 				default:
 					System.out.println("---------------------------------");
-					System.out.println("OpÁ„o inv·lida!");
+					System.out.println("Op√ß√£o inv√°lida!");
 					System.out.println("---------------------------------");
 					break;
 				}
@@ -278,18 +277,18 @@ public class Natura{
 		//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		//Pesquisas
 		
-		//Pesquisar Cliente por CÛdigo
+		//Pesquisar Cliente por C√≥digo
 		public static void pesqCliCodigo(){
 			long pesquisa = 0;
 			try{
-				System.out.println("CÛdigo do Cliente: ");
+				System.out.println("C√≥digo do Cliente: ");
 				pesquisa = scan.nextLong();
 				scan.nextLine();
 				DBConnection conn = new DBConnection();				
 				conn.executeSQLCliente("select * from Clientes where idCliente = '"+pesquisa+"'");
 			}catch(InputMismatchException e){
 				System.out.println("---------------------------------");
-				System.out.println("ERRO: Digite somente n˙meros!");
+				System.out.println("ERRO: Digite somente n√∫meros!");
 				System.out.println("---------------------------------");
 				scan.nextLine();
 			}
@@ -301,13 +300,42 @@ public class Natura{
 			System.out.println("Nome do Cliente: ");
 			pesquisa = scan.nextLine();
 			DBConnection conn = new DBConnection();
-			conn.executeSQLCliente("select * from clientes where Nome = '"+pesquisa+"'");
+			conn.executeSQLCliente("select * from Clientes where Nome = '"+pesquisa+"'");
+		}
+		
+		//Pesquisar Cliente por C√≥digo p/ Cadastrar Pedido
+		public static void pesqCliCodPedido(){
+			long pesquisa = 0;
+			try{
+				System.out.println("C√≥digo do Cliente: ");
+				pesquisa = scan.nextLong();
+				scan.nextLine();
+				DBConnection conn = new DBConnection();				
+				conn.executeSQLCliPed("select * from Clientes where idCliente = '"+pesquisa+"'");
+			}catch(InputMismatchException e){
+				System.out.println("---------------------------------");
+				System.out.println("ERRO: Digite somente n√∫meros!");
+				System.out.println("---------------------------------");
+				scan.nextLine();
+			}
+		}
+		
+		//Pesquisar Cliente por Nome p/ Cadastrar Pedido
+		public static void pesqCliNomePedido(){
+			String nome, sobrenome;
+			int i;
+			System.out.println("Nome do Cliente: ");
+			nome = scan.nextLine();
+			i = nome.replaceFirst(" ");
+			sobrenome = nome.substring(nome.length());
+			DBConnection conn = new DBConnection();
+			conn.executeSQLCliente("select * from Clientes where Nome = '"+nome.%S+"'");
 		}
 		
 		/*public static Pedido pesquisaPedidos(){
 			long pesquisa = 0;
 			try{
-				System.out.println("CÛdigo do Pedido: ");
+				System.out.println("C√≥digo do Pedido: ");
 	        	pesquisa = scan.nextInt();
 	        	scan.nextLine();
 	        	for (Pedido ped : listaPedidos) {
@@ -317,22 +345,22 @@ public class Natura{
 	        		}
 	        	}
 			}catch(InputMismatchException e){
-				System.out.println("ERRO: Digite somente n˙meros!");
+				System.out.println("ERRO: Digite somente n√∫meros!");
 			}
         		return null;
 		}*/
 		
-		//Pesquisar Produto por CÛdigo
+		//Pesquisar Produto por C√≥digo
 		public static void pesqProdCodigo(){
 			long pesquisaProd = 0;
 			try{
-	    		System.out.println("CÛdigo do Produto: ");
+	    		System.out.println("C√≥digo do Produto: ");
 	        	pesquisaProd = scan.nextLong();
 	        	scan.nextLine();
 	        	DBConnection conn = new DBConnection();				
-				conn.executeSQLProd("select * from produtos where CodProduto = '"+pesquisaProd+"'");
+				conn.executeSQLProd("select * from Produtos where CodProduto = '"+pesquisaProd+"'");
 			}catch(InputMismatchException e){
-				System.out.println("ERRO: Digite somente n˙meros!");
+				System.out.println("ERRO: Digite somente n√∫meros!");
 			}
 		}
 		
@@ -342,7 +370,7 @@ public class Natura{
 			System.out.println("Nome do Produto: ");
 			pesquisaProd = scan.nextLine();
 			DBConnection conn = new DBConnection();
-			conn.executeSQLProd("select * from produtos where Descricao = '"+pesquisaProd+"'");
+			conn.executeSQLProd("select * from Produtos where Descricao = '"+pesquisaProd+"'");
 		}
 		
 		//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -350,6 +378,6 @@ public class Natura{
 		
 		public static void listarClientes(){
 			DBConnection conn = new DBConnection();
-			conn.executeSQLCliente("select * from clientes");
+			conn.executeSQLCliente("select * from Clientes");
 		}
 }

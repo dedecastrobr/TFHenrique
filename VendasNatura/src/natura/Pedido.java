@@ -95,12 +95,12 @@ public class Pedido{
 	
 	public Pedido(Cliente cli, Produto prod){
 		try{
-			System.out.println("Preço Total do Pedido: ");
+			System.out.println("PreÃ§o Total do Pedido: ");
 			this.precoTotal = scan.nextDouble();
 			scan.nextLine();
 			clientePedido = cli;
 		}catch(InputMismatchException e){
-			System.out.println("ERRO: Digite somente números!");
+			System.out.println("ERRO: Digite somente nÃºmeros!");
 			scan.nextLine();
 		}
 		
@@ -110,11 +110,11 @@ public class Pedido{
 	
 	public void updatePedidos(){
 		try{
-			System.out.println("Novo Preço Total do Pedido: ");
+			System.out.println("Novo PreÃ§o Total do Pedido: ");
 			this.precoTotal = scan.nextDouble();
 			scan.nextLine();
 		}catch(InputMismatchException e){
-			System.out.println("ERRO: Digite somente números!");
+			System.out.println("ERRO: Digite somente nÃºmeros!");
 			scan.nextLine();
 		}
 		
@@ -125,11 +125,11 @@ public class Pedido{
 	public void mostraPedido(Cliente cli, Produto prod){
 		System.out.println("Pedido:");
 		System.out.println("Realizado por: " + cli.getNomeCliente());
-		System.out.println("Página: " + prod.getPaginaProd());
-		System.out.println("Código do Produto: " + prod.getCodigoProd());
-		System.out.println("Descrição: " + prod.getDescricaoProd());
-		System.out.println("Preço: " + prod.getPrecoProd());
-		System.out.println("Preço Total: " + this.precoTotal);
+		System.out.println("PÃ¡gina: " + prod.getPaginaProd());
+		System.out.println("CÃ³digo do Produto: " + prod.getCodigoProd());
+		System.out.println("DescriÃ§Ã£o: " + prod.getDescricaoProd());
+		System.out.println("PreÃ§o: " + prod.getPrecoProd());
+		System.out.println("PreÃ§o Total: " + this.precoTotal);
 		System.out.println("Data: " + this.dataPedido);
 	}
 }

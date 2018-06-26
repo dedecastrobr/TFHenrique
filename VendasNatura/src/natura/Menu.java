@@ -26,13 +26,13 @@ public class Menu{
 	}
 
 	public int getOption() {
-		System.out.println("Digite a opção desejada para "+nomeMenu+":");
+		System.out.println("Digite a opÃ§Ã£o desejada para "+nomeMenu+":");
 		try {
 			opSelecionada = scan.nextInt();
 			scan.nextLine();
 		} catch (Exception e) {
 			System.out.println("---------------------------------");
-			System.out.println("ERRO: Digite somente números!");
+			System.out.println("ERRO: Digite somente nÃºmeros!");
 			System.out.println("---------------------------------");
 			scan.nextLine();
 		}		

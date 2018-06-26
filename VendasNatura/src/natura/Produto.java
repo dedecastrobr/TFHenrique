@@ -97,32 +97,32 @@ public class Produto{
 	
 	public Produto(){
 		try{
-			System.out.println("Página do Produto: ");
+			System.out.println("PÃ¡gina do Produto: ");
 			this.paginaProd = scan.nextInt();
 			scan.nextLine();
 		}catch(InputMismatchException e){
-			System.out.println("ERRO: Digite somente números!");
+			System.out.println("ERRO: Digite somente nÃºmeros!");
 			scan.nextLine();
 		}
 		
 		try{
-			System.out.println("Código do Produto: ");
+			System.out.println("CÃ³digo do Produto: ");
 			this.codigoProd = scan.nextInt();
 			scan.nextLine();
 		}catch(InputMismatchException e){
-			System.out.println("ERRO: Digite somente úumeros!");
+			System.out.println("ERRO: Digite somente nÃºmeros!");
 			scan.nextLine();			
 		}
 		
-		System.out.println("Descrição do Produto: ");
+		System.out.println("DescriÃ§Ã£o do Produto: ");
 		this.descricaoProd = scan.nextLine();
 		
 		try{
-			System.out.println("Preço do Produto: ");
+			System.out.println("PreÃ§o do Produto: ");
 			this.precoProd = scan.nextDouble();
 			scan.nextLine();
 		}catch(InputMismatchException e){
-			System.out.println("ERRO: Digite somente números!");
+			System.out.println("ERRO: Digite somente nÃºmeros!");
 			scan.nextLine();
 		}		
 		
@@ -131,40 +131,40 @@ public class Produto{
 			this.qtdEstoque = scan.nextInt();
 			scan.nextLine();
 		}catch(InputMismatchException e){
-			System.out.println("ERRO: Digite somente números!");
+			System.out.println("ERRO: Digite somente nÃºmeros!");
 			scan.nextLine();
 		}
 	}
 	
 	public Produto(Pedido pedido){
 		try{
-			System.out.println("Página do Produto: ");
+			System.out.println("PÃ¡gina do Produto: ");
 			this.paginaProd = scan.nextInt();
 			scan.nextLine();
 		}catch(InputMismatchException e){
-			System.out.println("ERRO: Digite somente números!");
+			System.out.println("ERRO: Digite somente nÃºmeros!");
 			scan.nextLine();
 		}
 		
 		try{
-			System.out.println("Código do Produto: ");
+			System.out.println("CÃ³digo do Produto: ");
 			this.codigoProd = scan.nextInt();
 			scan.nextLine();
 			pedidoProduto = pedido;
 		}catch(InputMismatchException e){
-			System.out.println("ERRO: Digite somente números!");
+			System.out.println("ERRO: Digite somente nÃºmeros!");
 			scan.nextLine();			
 		}
 		
-		System.out.println("Descrição do Produto: ");
+		System.out.println("DescriÃ§Ã£o do Produto: ");
 		this.descricaoProd = scan.nextLine();
 		
 		try{
-			System.out.println("Preço do Produto: ");
+			System.out.println("PreÃ§o do Produto: ");
 			this.precoProd = scan.nextDouble();
 			scan.nextLine();
 		}catch(InputMismatchException e){
-			System.out.println("ERRO: Digite somente números!");
+			System.out.println("ERRO: Digite somente nÃºmeros!");
 			scan.nextLine();
 		}		
 		
@@ -173,7 +173,7 @@ public class Produto{
 			this.qtdEstoque = scan.nextInt();
 			scan.nextLine();
 		}catch(InputMismatchException e){
-			System.out.println("ERRO: Digite somente números!");
+			System.out.println("ERRO: Digite somente nÃºmeros!");
 			scan.nextLine();
 		}
 	}
@@ -182,12 +182,12 @@ public class Produto{
 		Connection conn = (new DBConnection()).getConn();
 		Statement stmt = null;
 		
-		String sql = "insert into produtos(CodProduto, Descricao, Preco, Pagina, QtdEstoque) values('" + this.codigoProd + "','" + this.descricaoProd + "','" + this.precoProd + "','" + this.paginaProd +"','" + this.qtdEstoque + "')";
+		String sql = "insert into Produtos(CodProduto, Descricao, Preco, Pagina, QtdEstoque) values('" + this.codigoProd + "','" + this.descricaoProd + "','" + this.precoProd + "','" + this.paginaProd +"','" + this.qtdEstoque + "')";
 		System.out.println(sql);
 		try {
 			stmt = conn.createStatement();
 			if(stmt.execute(sql)) {
-				System.out.println("Não funcionou");
+				System.out.println("NÃ£o funcionou");
 			}else {
 				int count = stmt.getUpdateCount();
 				if (count >= 1) {
@@ -203,41 +203,41 @@ public class Produto{
 	
 	public void updateProdutos(){
 		try{
-			System.out.println("Nova Página do Produto: ");
+			System.out.println("Nova PÃ¡gina do Produto: ");
 			this.paginaProd = scan.nextInt();
 			scan.nextLine();
 		}catch(InputMismatchException e){
-			System.out.println("ERRO: Digite somente números!");
+			System.out.println("ERRO: Digite somente nÃºmeros!");
 			scan.nextLine();
 		}
 		
 		try{
-			System.out.println("Novo Código do Produto: ");
+			System.out.println("Novo CÃ³digo do Produto: ");
 			this.codigoProd = scan.nextInt();
 			scan.nextLine();
 		}catch(InputMismatchException e){
-			System.out.println("ERRO: Digite somente números!");
+			System.out.println("ERRO: Digite somente nÃºmeros!");
 			scan.nextLine();			
 		}
 		
-		System.out.println("Nova Descrição do Produto: ");
+		System.out.println("Nova DescriÃ§Ã£o do Produto: ");
 		this.descricaoProd = scan.nextLine();
 		
 		try{
-			System.out.println("Novo Preço do Produto: ");
+			System.out.println("Novo PreÃ§o do Produto: ");
 			this.precoProd = scan.nextDouble();
 			scan.nextLine();
 		}catch(InputMismatchException e){
-			System.out.println("ERRO: Digite somente números!");
+			System.out.println("ERRO: Digite somente nÃºmeros!");
 			scan.nextLine();
 		}
 	}
 	
 	public void mostraProduto(){
 		System.out.println("Produto:");
-		System.out.println("Página: " + this.paginaProd);
-		System.out.println("Código: " + this.codigoProd);
-		System.out.println("Descrição: " + this.descricaoProd);
-		System.out.println("Preço: " + this.precoProd);
+		System.out.println("PÃ¡gina: " + this.paginaProd);
+		System.out.println("CÃ³digo: " + this.codigoProd);
+		System.out.println("DescriÃ§Ã£o: " + this.descricaoProd);
+		System.out.println("PreÃ§o: " + this.precoProd);
 	}
 }
