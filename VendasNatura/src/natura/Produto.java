@@ -182,7 +182,7 @@ public class Produto{
 		Connection conn = (new DBConnection()).getConn();
 		Statement stmt = null;
 		
-		String sql = "insert into Produtos(CodProduto, Descricao, Preco, Pagina, QtdEstoque) values('" + this.codigoProd + "','" + this.descricaoProd + "','" + this.precoProd + "','" + this.paginaProd +"','" + this.qtdEstoque + "')";
+		String sql = "INSERT INTO Produtos(CodProduto, Descricao, Preco, Pagina, QtdEstoque) VALUES('" + this.codigoProd + "','" + this.descricaoProd + "','" + this.precoProd + "','" + this.paginaProd +"','" + this.qtdEstoque + "')";
 		System.out.println(sql);
 		try {
 			stmt = conn.createStatement();

@@ -231,7 +231,7 @@ public class Natura{
 			do{
 				switch(opPesqClientes){
 				case 0:
-					pesqCliCodPedido();
+					//pesqCliCodPedido();
 					break;
 				case 1:
 					pesqCliNomePedido();
@@ -285,7 +285,7 @@ public class Natura{
 				pesquisa = scan.nextLong();
 				scan.nextLine();
 				DBConnection conn = new DBConnection();				
-				conn.executeSQLCliente("select * from Clientes where idCliente = '"+pesquisa+"'");
+				conn.executeSQLCliente("SELECT * FROM Clientes WHERE idCliente = '"+pesquisa+"'");
 			}catch(InputMismatchException e){
 				System.out.println("---------------------------------");
 				System.out.println("ERRO: Digite somente números!");
@@ -300,36 +300,30 @@ public class Natura{
 			System.out.println("Nome do Cliente: ");
 			pesquisa = scan.nextLine();
 			DBConnection conn = new DBConnection();
-			conn.executeSQLCliente("select * from Clientes where Nome = '"+pesquisa+"'");
+			conn.executeSQLCliente("SELECT * FROM Clientes WHERE Nome = '"+pesquisa+"'");
 		}
 		
 		//Pesquisar Cliente por Código p/ Cadastrar Pedido
-		public static void pesqCliCodPedido(){
+		/*public static void pesqCliCodPedido(){
 			long pesquisa = 0;
 			try{
 				System.out.println("Código do Cliente: ");
 				pesquisa = scan.nextLong();
 				scan.nextLine();
 				DBConnection conn = new DBConnection();				
-				conn.executeSQLCliPed("select * from Clientes where idCliente = '"+pesquisa+"'");
+				conn.executeSQLCliPed("SELECT * FROM Clientes WHERE idCliente = '"+pesquisa+"'");
 			}catch(InputMismatchException e){
 				System.out.println("---------------------------------");
 				System.out.println("ERRO: Digite somente números!");
 				System.out.println("---------------------------------");
 				scan.nextLine();
 			}
-		}
+		}*/
 		
 		//Pesquisar Cliente por Nome p/ Cadastrar Pedido
 		public static void pesqCliNomePedido(){
-			String nome, sobrenome;
-			int i;
 			System.out.println("Nome do Cliente: ");
-			nome = scan.nextLine();
-			i = nome.replaceFirst(" ");
-			sobrenome = nome.substring(nome.length());
-			DBConnection conn = new DBConnection();
-			conn.executeSQLCliente("select * from Clientes where Nome = '"+nome.%S+"'");
+			DBConnection.executeSQLCliPed(String sqlCliPed);
 		}
 		
 		/*public static Pedido pesquisaPedidos(){
@@ -358,7 +352,7 @@ public class Natura{
 	        	pesquisaProd = scan.nextLong();
 	        	scan.nextLine();
 	        	DBConnection conn = new DBConnection();				
-				conn.executeSQLProd("select * from Produtos where CodProduto = '"+pesquisaProd+"'");
+				conn.executeSQLProd("SELECT * FROM Produtos WHERE CodProduto = '"+pesquisaProd+"'");
 			}catch(InputMismatchException e){
 				System.out.println("ERRO: Digite somente números!");
 			}
@@ -370,7 +364,7 @@ public class Natura{
 			System.out.println("Nome do Produto: ");
 			pesquisaProd = scan.nextLine();
 			DBConnection conn = new DBConnection();
-			conn.executeSQLProd("select * from Produtos where Descricao = '"+pesquisaProd+"'");
+			conn.executeSQLProd("SELECT * FROM Produtos WHERE Descricao = '"+pesquisaProd+"'");
 		}
 		
 		//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -378,6 +372,6 @@ public class Natura{
 		
 		public static void listarClientes(){
 			DBConnection conn = new DBConnection();
-			conn.executeSQLCliente("select * from Clientes");
+			conn.executeSQLCliente("SELECT * FROM Clientes");
 		}
 }

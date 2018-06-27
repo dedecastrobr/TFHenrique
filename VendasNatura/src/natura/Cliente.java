@@ -105,7 +105,7 @@ public class Cliente{
 		Connection conn = (new DBConnection()).getConn();
 		Statement stmt = null;
 		
-		String sql = "insert into Clientes(Telefone, Nome, Endereco, Email) values('" + this.telefoneCliente + "','" + this.nomeCliente + "','" + this.enderecoCliente + "','" + this.emailCliente + "')";
+		String sql = "INSERT INTO Clientes(Telefone, Nome, Endereco, Email) VALUES('" + this.telefoneCliente + "','" + this.nomeCliente + "','" + this.enderecoCliente + "','" + this.emailCliente + "')";
 		System.out.println(sql);
 		try {
 			stmt = conn.createStatement();
