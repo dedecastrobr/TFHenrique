@@ -15,6 +15,10 @@ public class Cliente{
 	private String enderecoCliente = "";
 	private String emailCliente = "";
 	private long telefoneCliente = 0;
+	private String newNomeCliente = "";
+	private String newEnderecoCliente = "";
+	private String newEmailCliente = "";
+	private long newTelefoneCliente = 0;
 	private int idCliente = 0;
 	
 	//Cliente - Pedido
@@ -43,6 +47,22 @@ public class Cliente{
 		return idCliente;
 	}
 	
+	public String getNewNomeCliente(){
+		return newNomeCliente;
+	}
+	
+	public String getNewEnderecoCliente(){
+		return newEnderecoCliente;
+	}
+		
+	public String getNewEmailCliente(){
+		return newEmailCliente;
+	}
+		
+	public long getNewTelefoneCliente(){
+		return newTelefoneCliente;
+	}
+	
 	//Get Cliente - Pedido
 	public List<Pedido> getListaPedidos() {
 		return listaPedidos;
@@ -63,6 +83,22 @@ public class Cliente{
 		
 	public void setTelefoneCliente(long telefoneCliente){
 		this.telefoneCliente = telefoneCliente;
+	}
+	
+	public void setNewNomeCliente(String newNomeCliente){
+		this.newNomeCliente = newNomeCliente;
+	}
+		
+	public void setNewEnderecoCliente(String newEnderecoCliente){
+		this.newEnderecoCliente = newEnderecoCliente;
+	}
+		
+	public void setNewEmailCliente(String newEmailCliente){
+		this.newEmailCliente = newEmailCliente;
+	}
+		
+	public void setNewTelefoneCliente(long newTelefoneCliente){
+		this.newTelefoneCliente = newTelefoneCliente;
 	}
 	
 	public void setIdCliente(int idCliente){
@@ -126,23 +162,28 @@ public class Cliente{
 	
 	public void updateCliente(){
 		System.out.println("Novo Nome: ");
-		this.nomeCliente = scan.nextLine();
+		this.newNomeCliente = scan.nextLine();
 		
 		System.out.println("Novo Endereço: ");
-		this.enderecoCliente = scan.nextLine();
+		this.newEnderecoCliente = scan.nextLine();
 		
 		System.out.println("Novo Email: ");
-		this.emailCliente = scan.nextLine();
+		this.newEmailCliente = scan.nextLine();
 		
 		try{
 			System.out.println("Novo Telefone: ");
-			this.telefoneCliente = scan.nextLong();
+			this.newTelefoneCliente = scan.nextLong();
 			scan.nextLine();
 		}catch(InputMismatchException e){
 			System.out.println("ERRO: Digite somente números!");
 			scan.nextLine();
 		}
 	}
+	
+	public boolean update(){
+    	Natura.listaClientes.set(this.getIdCliente(), this);
+    	return true;
+    }
 	
 	public void mostraCliente(){
 		System.out.println("Cliente:");

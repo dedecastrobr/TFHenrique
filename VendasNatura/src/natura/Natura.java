@@ -1,11 +1,14 @@
 package natura;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
 public class Natura{
+	
+	public static ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();	
 	
 	public static List<String> opsMenuPrincipal = Arrays.asList("Clientes", "Pedidos", "Produtos", "Vendas");
 	public static List<String> opsMenuClientes = Arrays.asList("Cadastrar Cliente", "Pesquisar Cliente", "Listar Clientes");
@@ -322,27 +325,12 @@ public class Natura{
 		
 		//Pesquisar Cliente por Nome p/ Cadastrar Pedido
 		public static void pesqCliNomePedido(){
+			String pesquisa = "";
 			System.out.println("Nome do Cliente: ");
-			DBConnection.executeSQLCliPed(String sqlCliPed);
+			pesquisa = scan.nextLine();
+			DBConnection conn = new DBConnection();
+			conn.executeSQLCliente("SELECT * FROM clientes WHERE Nome = '"+pesquisa+"'");;			
 		}
-		
-		/*public static Pedido pesquisaPedidos(){
-			long pesquisa = 0;
-			try{
-				System.out.println("Código do Pedido: ");
-	        	pesquisa = scan.nextInt();
-	        	scan.nextLine();
-	        	for (Pedido ped : listaPedidos) {
-	        		if (ped.getIdPedido() == pesquisa){               
-	        			ped.setIdPedido(listaPedidos.indexOf(ped));  
-	        			return ped;
-	        		}
-	        	}
-			}catch(InputMismatchException e){
-				System.out.println("ERRO: Digite somente números!");
-			}
-        		return null;
-		}*/
 		
 		//Pesquisar Produto por Código
 		public static void pesqProdCodigo(){
