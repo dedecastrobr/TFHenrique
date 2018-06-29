@@ -303,7 +303,7 @@ public class Natura{
 			System.out.println("Nome do Cliente: ");
 			pesquisa = scan.nextLine();
 			DBConnection conn = new DBConnection();
-			conn.executeSQLCliente("SELECT * FROM Clientes WHERE Nome = '"+pesquisa+"'");
+			conn.executeSQLCliente("SELECT * FROM Clientes WHERE Nome LIKE '%"+pesquisa+"%'");
 		}
 		
 		//Pesquisar Cliente por Código p/ Cadastrar Pedido
@@ -329,7 +329,7 @@ public class Natura{
 			System.out.println("Nome do Cliente: ");
 			pesquisa = scan.nextLine();
 			DBConnection conn = new DBConnection();
-			conn.executeSQLCliente("SELECT * FROM clientes WHERE Nome = '"+pesquisa+"'");;			
+			conn.executeSQLCliPed("SELECT * FROM Clientes WHERE Nome LIKE '%"+pesquisa+"%'");
 		}
 		
 		//Pesquisar Produto por Código
