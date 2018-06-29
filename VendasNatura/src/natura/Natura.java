@@ -342,7 +342,10 @@ public class Natura{
 	        	DBConnection conn = new DBConnection();				
 				conn.executeSQLProd("SELECT * FROM Produtos WHERE CodProduto = '"+pesquisaProd+"'");
 			}catch(InputMismatchException e){
+				System.out.println("---------------------------------");
 				System.out.println("ERRO: Digite somente números!");
+				System.out.println("---------------------------------");
+				scan.nextLine();
 			}
 		}
 		
