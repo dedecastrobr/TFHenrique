@@ -20,9 +20,9 @@ USE `Natura` ;
 CREATE TABLE IF NOT EXISTS `Natura`.`Clientes` (
   `idCliente` INT NOT NULL AUTO_INCREMENT,
   `Telefone` INT(12) NOT NULL,
-  `Nome` VARCHAR(45) NOT NULL,
-  `Endereco` VARCHAR(45) NOT NULL,
-  `Email` VARCHAR(45) NULL,
+  `Nome` VARCHAR(90) NOT NULL,
+  `Endereco` VARCHAR(90) NOT NULL,
+  `Email` VARCHAR(90) NULL,
   PRIMARY KEY (`idCliente`),
   UNIQUE INDEX `Email_UNIQUE` (`Email` ASC),
   UNIQUE INDEX `Telefone_UNIQUE` (`Telefone` ASC))
@@ -38,6 +38,7 @@ CREATE TABLE IF NOT EXISTS `Natura`.`Pedidos` (
   `DataPedido` DATETIME NOT NULL,
   `Clientes_idCliente` INT NOT NULL,
   `DataVenda` DATETIME NULL,
+  `Status` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idPedido`, `Clientes_idCliente`),
   UNIQUE INDEX `idPedido_UNIQUE` (`idPedido` ASC),
   INDEX `fk_Pedidos_Clientes1_idx` (`Clientes_idCliente` ASC),
@@ -55,7 +56,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `Natura`.`Produtos` (
   `idProd` INT NOT NULL AUTO_INCREMENT,
   `CodProduto` INT(6) NOT NULL,
-  `Descricao` VARCHAR(45) NOT NULL,
+  `Descricao` VARCHAR(90) NOT NULL,
   `Preco` FLOAT NOT NULL,
   `Pagina` INT(4) NOT NULL,
   `QtdEstoque` INT NOT NULL,
