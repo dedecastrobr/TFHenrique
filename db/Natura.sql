@@ -60,6 +60,7 @@ CREATE TABLE IF NOT EXISTS `Natura`.`Produtos` (
   `Preco` FLOAT NOT NULL,
   `Pagina` INT(4) NOT NULL,
   `QtdEstoque` INT NOT NULL,
+  `Pontos` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idProd`, `CodProduto`),
   UNIQUE INDEX `CodProd_UNIQUE` (`idProd` ASC),
   UNIQUE INDEX `CodProduto_UNIQUE` (`CodProduto` ASC))

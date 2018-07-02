@@ -14,8 +14,8 @@ public class Pedido{
 	private String dataVenda = "";
 	private int idPedido = 0;
 	
-	//Cliente - Pedido
-	private Cliente clientePedido = null;
+	//Pedido - Cliente
+	private ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
 	
 	//Pedido - Produto
 	private ArrayList<Produto> listaProdutos = new ArrayList<Produto>();
@@ -43,9 +43,9 @@ public class Pedido{
 		return idPedido;
 	}
 	
-	//Get Cliente - Pedido
-	public Cliente getClientePedido() {
-		return clientePedido;
+	//Get Pedido - Cliente
+	public List<Cliente> getListaClientes() {
+		return listaClientes;
 	}
 	
 	//Get Pedido - Produto
@@ -74,9 +74,9 @@ public class Pedido{
 		this.idPedido = idPedido;
 	}
 	
-	//Set Cliente - Pedido
-	public void setClientePedido(Cliente clientePedido) {
-		this.clientePedido = clientePedido;
+	//Set Pedido - Cliente
+	public void setListaClientes(ArrayList<Cliente> listaClientes) {
+		this.listaClientes = listaClientes;
 	}
 	
 	//Set Pedido - Produto
@@ -87,14 +87,12 @@ public class Pedido{
 	public Pedido(Double precoTotal, String dataPedido, String status, String dataVenda, Cliente cli, Produto prod){
 		this.precoTotal = precoTotal;
 		this.dataPedido = dataPedido;
-		this.clientePedido = cli;
-		this.dataPedido = dataPedido;
 		this.status = status;
 		this.dataVenda = dataVenda;
 	}
 	
 	public Pedido(Cliente cli, Produto prod){
-		try{
+		/*try{
 			System.out.println("Preço Total do Pedido: ");
 			this.precoTotal = scan.nextDouble();
 			scan.nextLine();
@@ -102,7 +100,7 @@ public class Pedido{
 		}catch(InputMismatchException e){
 			System.out.println("ERRO: Digite somente números!");
 			scan.nextLine();
-		}
+		}*/
 		
 		System.out.println("Data do Pedido: ");
 		this.dataPedido = scan.nextLine();

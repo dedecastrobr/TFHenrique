@@ -10,7 +10,7 @@ public class Natura{
 	
 	public static ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();	
 	
-	public static List<String> opsMenuPrincipal = Arrays.asList("Clientes", "Pedidos", "Produtos", "Vendas");
+	public static List<String> opsMenuPrincipal = Arrays.asList("Clientes", "Pedidos", "Produtos", "Estoque");
 	public static List<String> opsMenuClientes = Arrays.asList("Cadastrar Cliente", "Pesquisar Cliente", "Listar Clientes");
 	public static List<String> opsMenuPedidos = Arrays.asList("Cadastrar Pedido", "Pesquisar Pedido", "Listar Pedidos");
 	public static List<String> opsMenuProdutos = Arrays.asList("Cadastrar Produto", "Pesquisar Produto", "Listar Produtos");
@@ -158,6 +158,9 @@ public class Natura{
 							opPesqProdutos = menuPesquisa.getOption();
 						}while(opPesqProdutos != 99);
 						break;
+					case 2:
+						listarProdutos();
+						break;
 					case 99:
 						break;
 					default:
@@ -178,10 +181,10 @@ public class Natura{
 				do{
 					switch(opEstoque){
 					case 0:
-						//atualizaEstoque();
+						atualizaEstoque();
 						break;
 					case 1:
-						//relatorioEstoque();
+						relatorioEstoque();
 						break;
 					case 99:
 						break;
@@ -234,7 +237,7 @@ public class Natura{
 			do{
 				switch(opPesqClientes){
 				case 0:
-					//pesqCliCodPedido();
+					pesqCliCodPedido();
 					break;
 				case 1:
 					pesqCliNomePedido();
@@ -288,7 +291,7 @@ public class Natura{
 				pesquisa = scan.nextLong();
 				scan.nextLine();
 				DBConnection conn = new DBConnection();				
-				conn.executeSQLCliente("SELECT * FROM Clientes WHERE idCliente = '"+pesquisa+"'");
+				conn.executeSQLCliente("SELECT * FROM Clientes WHERE idCliente LIKE '%"+pesquisa+"%'");
 			}catch(InputMismatchException e){
 				System.out.println("---------------------------------");
 				System.out.println("ERRO: Digite somente números!");
@@ -307,21 +310,21 @@ public class Natura{
 		}
 		
 		//Pesquisar Cliente por Código p/ Cadastrar Pedido
-		/*public static void pesqCliCodPedido(){
+		public static void pesqCliCodPedido(){
 			long pesquisa = 0;
 			try{
 				System.out.println("Código do Cliente: ");
 				pesquisa = scan.nextLong();
 				scan.nextLine();
 				DBConnection conn = new DBConnection();				
-				conn.executeSQLCliPed("SELECT * FROM Clientes WHERE idCliente = '"+pesquisa+"'");
+				conn.executeSQLCliPed("SELECT * FROM Clientes WHERE idCliente LIKE '%"+pesquisa+"%'");
 			}catch(InputMismatchException e){
 				System.out.println("---------------------------------");
 				System.out.println("ERRO: Digite somente números!");
 				System.out.println("---------------------------------");
 				scan.nextLine();
 			}
-		}*/
+		}
 		
 		//Pesquisar Cliente por Nome p/ Cadastrar Pedido
 		public static void pesqCliNomePedido(){
@@ -334,13 +337,13 @@ public class Natura{
 		
 		//Pesquisar Produto por Código
 		public static void pesqProdCodigo(){
-			long pesquisaProd = 0;
+			long pesquisa = 0;
 			try{
 	    		System.out.println("Código do Produto: ");
-	        	pesquisaProd = scan.nextLong();
+	        	pesquisa = scan.nextLong();
 	        	scan.nextLine();
 	        	DBConnection conn = new DBConnection();				
-				conn.executeSQLProd("SELECT * FROM Produtos WHERE CodProduto = '"+pesquisaProd+"'");
+				conn.executeSQLProd("SELECT * FROM Produtos WHERE CodProduto LIKE '%"+pesquisa+"%'");
 			}catch(InputMismatchException e){
 				System.out.println("---------------------------------");
 				System.out.println("ERRO: Digite somente números!");
@@ -351,11 +354,11 @@ public class Natura{
 		
 		//Pesquisar Produto por Nome
 		public static void pesqProdNome(){
-			String pesquisaProd = "";
+			String pesquisa = "";
 			System.out.println("Nome do Produto: ");
-			pesquisaProd = scan.nextLine();
+			pesquisa = scan.nextLine();
 			DBConnection conn = new DBConnection();
-			conn.executeSQLProd("SELECT * FROM Produtos WHERE Descricao = '"+pesquisaProd+"'");
+			conn.executeSQLProd("SELECT * FROM Produtos WHERE Descricao LIKE '%"+pesquisa+"%'");
 		}
 		
 		//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -364,5 +367,59 @@ public class Natura{
 		public static void listarClientes(){
 			DBConnection conn = new DBConnection();
 			conn.executeSQLCliente("SELECT * FROM Clientes");
+		}
+		
+		public static void listarProdutos(){
+			DBConnection conn = new DBConnection();
+			conn.executeSQLProd("SELECT * FROM Produtos");
+		}
+		
+		//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		//Estoque
+		
+		//Atualizar Estoque
+		public static void atualizaEstoque(){
+			Menu menuPesquisa = new Menu("Pesquisar Produto", opsMenuPesquisa);
+			menuPesquisa.show();
+			int opPesqProdutos = menuPesquisa.getOption();
+			do{
+				switch(opPesqProdutos){
+				case 0:
+					long pesquisaProdCod = 0;
+					try{
+			    		System.out.println("Código do Produto: ");
+			        	pesquisaProdCod = scan.nextLong();
+			        	scan.nextLine();
+			        	DBConnection conn = new DBConnection();				
+						conn.executeSQLProdEst("SELECT * FROM Produtos WHERE CodProduto LIKE '%"+pesquisaProdCod+"%'");
+					}catch(InputMismatchException e){
+						System.out.println("---------------------------------");
+						System.out.println("ERRO: Digite somente números!");
+						System.out.println("---------------------------------");
+						scan.nextLine();
+					}					
+					break;
+				case 1:
+					String pesquisaProdNome = "";
+					System.out.println("Nome do Produto: ");
+					pesquisaProdNome = scan.nextLine();
+					DBConnection conn = new DBConnection();
+					conn.executeSQLProdEst("SELECT * FROM Produtos WHERE Descricao LIKE '%"+pesquisaProdNome+"%'");
+					break;
+				case 99:
+					break;
+				default:
+					System.out.println("---------------------------------");
+					System.out.println("Opção inválida!");
+					System.out.println("---------------------------------");
+					break;
+				}
+				menuPesquisa.show();
+				opPesqProdutos = menuPesquisa.getOption();
+			}while(opPesqProdutos != 99);
+		}
+		
+		public static void relatorioEstoque(){
+			
 		}
 }

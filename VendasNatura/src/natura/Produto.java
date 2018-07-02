@@ -14,6 +14,7 @@ public class Produto{
 	private Double precoProd = 0.00;
 	private int idProduto = 0;
 	private int qtdEstoque = 0;
+	private String pontosProd = "";
 
 	//Pedido - Produto
 	private Pedido pedidoProduto = null;
@@ -43,6 +44,10 @@ public class Produto{
 	
 	public int getQtdEstoque(){
 		return qtdEstoque;
+	}
+	
+	public String getPontosProd(){
+		return pontosProd;
 	}
 	
 	//Get Pedidos - Produtos
@@ -75,24 +80,30 @@ public class Produto{
 		this.qtdEstoque = qtdEstoque;
 	}
 	
+	public void setPontosProd(String pontosProd){
+		this.pontosProd = pontosProd;
+	}
+	
 	//Set Pedido - Produto
 	public void setPedidoProduto(Pedido pedidoProduto) {
 		this.pedidoProduto = pedidoProduto;
 	}
 	
-	public Produto(int paginaProd, int codigoProd, String descricaoProd, Double precoProd, int qtdEstoque, Pedido pedido){
+	public Produto(int paginaProd, int codigoProd, String descricaoProd, Double precoProd, int qtdEstoque, String pontosProd, Pedido pedido){
 		this.paginaProd = paginaProd;
 		this.codigoProd = codigoProd;
 		this.descricaoProd = descricaoProd;
 		this.precoProd = precoProd;
 		this.pedidoProduto = pedido;
+		this.pontosProd = pontosProd;
 	}
 	
-	public Produto(int paginaProd, int codigoProd, String descricaoProd, Double precoProd, int qtdEstoque){
+	public Produto(int paginaProd, int codigoProd, String descricaoProd, Double precoProd, int qtdEstoque, String pontosProd){
 		this.paginaProd = paginaProd;
 		this.codigoProd = codigoProd;
 		this.descricaoProd = descricaoProd;
 		this.precoProd = precoProd;
+		this.pontosProd = pontosProd;
 	}
 	
 	public Produto(){
@@ -134,6 +145,9 @@ public class Produto{
 			System.out.println("ERRO: Digite somente números!");
 			scan.nextLine();
 		}
+		
+		System.out.println("Pontos do Produto: ");
+		this.pontosProd = scan.nextLine();
 	}
 	
 	public Produto(Pedido pedido){
@@ -176,13 +190,16 @@ public class Produto{
 			System.out.println("ERRO: Digite somente números!");
 			scan.nextLine();
 		}
+		
+		System.out.println("Pontos do Produto: ");
+		this.pontosProd = scan.nextLine();
 	}
 	
 	public void createProduto(){
 		Connection conn = (new DBConnection()).getConn();
 		Statement stmt = null;
 		
-		String sql = "INSERT INTO Produtos(CodProduto, Descricao, Preco, Pagina, QtdEstoque) VALUES('" + this.codigoProd + "','" + this.descricaoProd + "','" + this.precoProd + "','" + this.paginaProd +"','" + this.qtdEstoque + "')";
+		String sql = "INSERT INTO Produtos(CodProduto, Descricao, Preco, Pagina, QtdEstoque, Pontos) VALUES('" + this.codigoProd + "','" + this.descricaoProd + "','" + this.precoProd + "','" + this.paginaProd +"','" + this.qtdEstoque + "','" + this.pontosProd + "')";
 		System.out.println(sql);
 		try {
 			stmt = conn.createStatement();
@@ -231,6 +248,9 @@ public class Produto{
 			System.out.println("ERRO: Digite somente números!");
 			scan.nextLine();
 		}
+		
+		System.out.println("Novos Pontos do Produto: ");
+		this.pontosProd = scan.nextLine();
 	}
 	
 	public void mostraProduto(){
@@ -239,5 +259,7 @@ public class Produto{
 		System.out.println("Código: " + this.codigoProd);
 		System.out.println("Descrição: " + this.descricaoProd);
 		System.out.println("Preço: " + this.precoProd);
+		System.out.println("Qtd. em Estoque: " + this.qtdEstoque);
+		System.out.println("Pontos: " + this.pontosProd);
 	}
 }

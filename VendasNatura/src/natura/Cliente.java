@@ -5,8 +5,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Cliente{
 	
@@ -15,14 +13,10 @@ public class Cliente{
 	private String enderecoCliente = "";
 	private String emailCliente = "";
 	private long telefoneCliente = 0;
-	private String newNomeCliente = "";
-	private String newEnderecoCliente = "";
-	private String newEmailCliente = "";
-	private long newTelefoneCliente = 0;
 	private int idCliente = 0;
 	
-	//Cliente - Pedido
-	private ArrayList<Pedido> listaPedidos = new ArrayList<Pedido>();
+	//Pedido - Cliente
+	private Pedido pedidoCliente = null;
 	
 	private Scanner scan = Natura.scan;
 	
@@ -47,25 +41,9 @@ public class Cliente{
 		return idCliente;
 	}
 	
-	public String getNewNomeCliente(){
-		return newNomeCliente;
-	}
-	
-	public String getNewEnderecoCliente(){
-		return newEnderecoCliente;
-	}
-		
-	public String getNewEmailCliente(){
-		return newEmailCliente;
-	}
-		
-	public long getNewTelefoneCliente(){
-		return newTelefoneCliente;
-	}
-	
-	//Get Cliente - Pedido
-	public List<Pedido> getListaPedidos() {
-		return listaPedidos;
+	//Get Pedido - Cliente
+	public Pedido getpedidoCliente() {
+		return pedidoCliente;
 	}
 	
 	//Sets
@@ -85,29 +63,21 @@ public class Cliente{
 		this.telefoneCliente = telefoneCliente;
 	}
 	
-	public void setNewNomeCliente(String newNomeCliente){
-		this.newNomeCliente = newNomeCliente;
-	}
-		
-	public void setNewEnderecoCliente(String newEnderecoCliente){
-		this.newEnderecoCliente = newEnderecoCliente;
-	}
-		
-	public void setNewEmailCliente(String newEmailCliente){
-		this.newEmailCliente = newEmailCliente;
-	}
-		
-	public void setNewTelefoneCliente(long newTelefoneCliente){
-		this.newTelefoneCliente = newTelefoneCliente;
-	}
-	
 	public void setIdCliente(int idCliente){
 		this.idCliente = idCliente;
 	}
 	
-	//Set Cliente - Pedido
-	public void setListaPedidos(ArrayList<Pedido> listaPedidos) {
-		this.listaPedidos = listaPedidos;
+	//Set Pedido - Cliente
+	public void setPedidoCliente(Pedido pedidoCliente) {
+		this.pedidoCliente = pedidoCliente;
+	}
+	
+	public Cliente(String nomeCliente, String enderecoCliente, String emailCliente, long telefoneCliente, Pedido pedidoCliente){
+		this.nomeCliente = nomeCliente;
+		this.enderecoCliente = enderecoCliente;
+		this.emailCliente = emailCliente;
+		this.telefoneCliente = telefoneCliente;
+		this.pedidoCliente = pedidoCliente;
 	}
 	
 	public Cliente(String nomeCliente, String enderecoCliente, String emailCliente, long telefoneCliente){
@@ -120,6 +90,27 @@ public class Cliente{
 	public Cliente(){
 		System.out.println("Nome: ");
 		this.nomeCliente = scan.nextLine();
+		
+		System.out.println("Endereço: ");
+		this.enderecoCliente = scan.nextLine();
+		
+		System.out.println("Email: ");
+		this.emailCliente = scan.nextLine();
+		
+		try{
+			System.out.println("Telefone: ");
+			this.telefoneCliente = scan.nextLong();
+			scan.nextLine();
+		}catch(InputMismatchException e){
+			System.out.println("ERRO: Digite somente números!");
+			scan.nextLine();
+		}
+	}
+	
+	public Cliente(Pedido pedido){
+		System.out.println("Nome: ");
+		this.nomeCliente = scan.nextLine();
+		pedidoCliente = pedido;
 		
 		System.out.println("Endereço: ");
 		this.enderecoCliente = scan.nextLine();
@@ -162,17 +153,17 @@ public class Cliente{
 	
 	public void updateCliente(){
 		System.out.println("Novo Nome: ");
-		this.newNomeCliente = scan.nextLine();
+		this.nomeCliente = scan.nextLine();
 		
 		System.out.println("Novo Endereço: ");
-		this.newEnderecoCliente = scan.nextLine();
+		this.enderecoCliente = scan.nextLine();
 		
 		System.out.println("Novo Email: ");
-		this.newEmailCliente = scan.nextLine();
+		this.emailCliente = scan.nextLine();
 		
 		try{
 			System.out.println("Novo Telefone: ");
-			this.newTelefoneCliente = scan.nextLong();
+			this.telefoneCliente = scan.nextLong();
 			scan.nextLine();
 		}catch(InputMismatchException e){
 			System.out.println("ERRO: Digite somente números!");
