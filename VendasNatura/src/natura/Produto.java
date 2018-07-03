@@ -94,6 +94,7 @@ public class Produto{
 		this.codigoProd = codigoProd;
 		this.descricaoProd = descricaoProd;
 		this.precoProd = precoProd;
+		this.qtdEstoque = qtdEstoque;
 		this.pedidoProduto = pedido;
 		this.pontosProd = pontosProd;
 	}
@@ -102,6 +103,7 @@ public class Produto{
 		this.paginaProd = paginaProd;
 		this.codigoProd = codigoProd;
 		this.descricaoProd = descricaoProd;
+		this.qtdEstoque = qtdEstoque;
 		this.precoProd = precoProd;
 		this.pontosProd = pontosProd;
 	}
