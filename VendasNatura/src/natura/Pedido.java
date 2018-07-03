@@ -112,7 +112,9 @@ public class Pedido{
 			this.precoTotal = scan.nextDouble();
 			scan.nextLine();
 		}catch(InputMismatchException e){
+			System.out.println("---------------------------------");
 			System.out.println("ERRO: Digite somente números!");
+			System.out.println("---------------------------------");
 			scan.nextLine();
 		}
 		

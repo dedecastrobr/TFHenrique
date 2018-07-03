@@ -102,7 +102,9 @@ public class Cliente{
 			this.telefoneCliente = scan.nextLong();
 			scan.nextLine();
 		}catch(InputMismatchException e){
+			System.out.println("---------------------------------");
 			System.out.println("ERRO: Digite somente números!");
+			System.out.println("---------------------------------");
 			scan.nextLine();
 		}
 	}
@@ -123,7 +125,9 @@ public class Cliente{
 			this.telefoneCliente = scan.nextLong();
 			scan.nextLine();
 		}catch(InputMismatchException e){
+			System.out.println("---------------------------------");
 			System.out.println("ERRO: Digite somente números!");
+			System.out.println("---------------------------------");
 			scan.nextLine();
 		}
 	}
@@ -148,26 +152,6 @@ public class Cliente{
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-	}
-	
-	public void updateCliente(){
-		System.out.println("Novo Nome: ");
-		this.nomeCliente = scan.nextLine();
-		
-		System.out.println("Novo Endereço: ");
-		this.enderecoCliente = scan.nextLine();
-		
-		System.out.println("Novo Email: ");
-		this.emailCliente = scan.nextLine();
-		
-		try{
-			System.out.println("Novo Telefone: ");
-			this.telefoneCliente = scan.nextLong();
-			scan.nextLine();
-		}catch(InputMismatchException e){
-			System.out.println("ERRO: Digite somente números!");
-			scan.nextLine();
 		}
 	}
 	

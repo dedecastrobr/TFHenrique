@@ -112,7 +112,9 @@ public class Produto{
 			this.paginaProd = scan.nextInt();
 			scan.nextLine();
 		}catch(InputMismatchException e){
+			System.out.println("---------------------------------");
 			System.out.println("ERRO: Digite somente números!");
+			System.out.println("---------------------------------");
 			scan.nextLine();
 		}
 		
@@ -121,7 +123,9 @@ public class Produto{
 			this.codigoProd = scan.nextInt();
 			scan.nextLine();
 		}catch(InputMismatchException e){
+			System.out.println("---------------------------------");
 			System.out.println("ERRO: Digite somente números!");
+			System.out.println("---------------------------------");
 			scan.nextLine();			
 		}
 		
@@ -133,7 +137,9 @@ public class Produto{
 			this.precoProd = scan.nextDouble();
 			scan.nextLine();
 		}catch(InputMismatchException e){
+			System.out.println("---------------------------------");
 			System.out.println("ERRO: Digite somente números!");
+			System.out.println("---------------------------------");
 			scan.nextLine();
 		}		
 		
@@ -142,7 +148,9 @@ public class Produto{
 			this.qtdEstoque = scan.nextInt();
 			scan.nextLine();
 		}catch(InputMismatchException e){
+			System.out.println("---------------------------------");
 			System.out.println("ERRO: Digite somente números!");
+			System.out.println("---------------------------------");
 			scan.nextLine();
 		}
 		
@@ -156,7 +164,9 @@ public class Produto{
 			this.paginaProd = scan.nextInt();
 			scan.nextLine();
 		}catch(InputMismatchException e){
+			System.out.println("---------------------------------");
 			System.out.println("ERRO: Digite somente números!");
+			System.out.println("---------------------------------");
 			scan.nextLine();
 		}
 		
@@ -166,7 +176,9 @@ public class Produto{
 			scan.nextLine();
 			pedidoProduto = pedido;
 		}catch(InputMismatchException e){
+			System.out.println("---------------------------------");
 			System.out.println("ERRO: Digite somente números!");
+			System.out.println("---------------------------------");
 			scan.nextLine();			
 		}
 		
@@ -178,7 +190,9 @@ public class Produto{
 			this.precoProd = scan.nextDouble();
 			scan.nextLine();
 		}catch(InputMismatchException e){
+			System.out.println("---------------------------------");
 			System.out.println("ERRO: Digite somente números!");
+			System.out.println("---------------------------------");
 			scan.nextLine();
 		}		
 		
@@ -187,7 +201,9 @@ public class Produto{
 			this.qtdEstoque = scan.nextInt();
 			scan.nextLine();
 		}catch(InputMismatchException e){
+			System.out.println("---------------------------------");
 			System.out.println("ERRO: Digite somente números!");
+			System.out.println("---------------------------------");
 			scan.nextLine();
 		}
 		
@@ -224,7 +240,9 @@ public class Produto{
 			this.paginaProd = scan.nextInt();
 			scan.nextLine();
 		}catch(InputMismatchException e){
+			System.out.println("---------------------------------");
 			System.out.println("ERRO: Digite somente números!");
+			System.out.println("---------------------------------");
 			scan.nextLine();
 		}
 		
@@ -233,7 +251,9 @@ public class Produto{
 			this.codigoProd = scan.nextInt();
 			scan.nextLine();
 		}catch(InputMismatchException e){
+			System.out.println("---------------------------------");
 			System.out.println("ERRO: Digite somente números!");
+			System.out.println("---------------------------------");
 			scan.nextLine();			
 		}
 		
@@ -245,7 +265,9 @@ public class Produto{
 			this.precoProd = scan.nextDouble();
 			scan.nextLine();
 		}catch(InputMismatchException e){
+			System.out.println("---------------------------------");
 			System.out.println("ERRO: Digite somente números!");
+			System.out.println("---------------------------------");
 			scan.nextLine();
 		}
 		
