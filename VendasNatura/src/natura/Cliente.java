@@ -155,11 +155,6 @@ public class Cliente{
 		}
 	}
 	
-	public boolean update(){
-    	Natura.listaClientes.set(this.getIdCliente(), this);
-    	return true;
-    }
-	
 	public void mostraCliente(){
 		System.out.println("Cliente:");
 		System.out.println("Telefone: " + this.telefoneCliente);

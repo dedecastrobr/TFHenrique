@@ -1,5 +1,8 @@
 package natura;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -91,7 +94,7 @@ public class Pedido{
 		this.dataVenda = dataVenda;
 	}
 	
-	public Pedido(Cliente cli, Produto prod){
+	public Pedido(){
 		/*try{
 			System.out.println("Preço Total do Pedido: ");
 			this.precoTotal = scan.nextDouble();
@@ -106,6 +109,29 @@ public class Pedido{
 		this.dataPedido = scan.nextLine();
 	}
 	
+	public void createPedido(Cliente cli){
+		Connection conn = (new DBConnection()).getConn();
+		Statement stmt = null;
+		
+		String sql = "INSERT INTO Pedidos(Clientes_idCliente) VALUES('" + cli.getIdCliente() + "'";
+		System.out.println(sql);
+		try {
+			stmt = conn.createStatement();
+			if(stmt.execute(sql)) {
+				System.out.println("Não funcionou");
+			}else {
+				int count = stmt.getUpdateCount();
+				if (count >= 1) {
+					System.out.println("---------------------------------");
+					System.out.println("Cliente inserido no pedido com sucesso!");
+					System.out.println("---------------------------------");
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public void updatePedidos(){
 		try{
 			System.out.println("Novo Preço Total do Pedido: ");

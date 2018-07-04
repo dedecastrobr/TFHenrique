@@ -1,14 +1,11 @@
 package natura;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
 public class Natura{
-	
-	public static ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();	
 	
 	public static List<String> opsMenuPrincipal = Arrays.asList("Clientes", "Pedidos", "Produtos", "Estoque");
 	public static List<String> opsMenuClientes = Arrays.asList("Cadastrar Cliente", "Pesquisar Cliente", "Listar Clientes");
@@ -87,7 +84,7 @@ public class Natura{
 				do{
 					switch(opPedidos){
 					case 0:
-						cadastroPedidos();
+						cadastroCliPed();
 						break;
 					case 1:
 						/*Cliente cli = new Cliente();
@@ -230,7 +227,7 @@ public class Natura{
 			}
 		}
 		
-		public static void cadastroPedidos(){
+		public static void cadastroCliPed(){
 			Menu menuPesquisa = new Menu("Pesquisar Cliente", opsMenuPesquisa);
 			menuPesquisa.show();
 			int opPesqClientes = menuPesquisa.getOption();
@@ -253,18 +250,36 @@ public class Natura{
 				menuPesquisa.show();
 				opPesqClientes = menuPesquisa.getOption();
 			}while(opPesqClientes != 99);
-			/*Pedido pedidos = new Pedido(cli, prod);
-			if(pedidos != null && prod.getCodigoProd() != 0 && cli.getTelefoneCliente() != 0){
-				System.out.println("---------------------------------");
-				System.out.println("Pedido registrado com sucesso!");
-				System.out.println("---------------------------------");
-				pedidos.mostraPedido(cli, prod);
-				System.out.println("---------------------------------");
-			}else{
-				System.out.println("---------------------------------");
-				System.out.println("Falha no registro do pedido!");
-				System.out.println("---------------------------------");
-			}*/
+		}
+		
+		public static void cadastroProdPed(){
+			Menu menuPesquisa = new Menu("Pesquisar Produto", opsMenuPesquisa);
+			menuPesquisa.show();
+			int opPesqProdutos = menuPesquisa.getOption();
+			do{
+				switch(opPesqProdutos){
+				case 0:
+					pesqProdCodPedido();
+					break;
+				case 1:
+					pesqProdNomePedido();
+					break;
+				case 99:
+					break;
+				default:
+					System.out.println("---------------------------------");
+					System.out.println("Opção inválida!");
+					System.out.println("---------------------------------");
+					break;
+				}
+				menuPesquisa.show();
+				opPesqProdutos = menuPesquisa.getOption();
+			}while(opPesqProdutos != 99);
+		}
+		
+		public static void cadCliPedido(Cliente cli){
+			Pedido ped = new Pedido();
+			ped.createPedido(cli);
 		}
 		
 		public static void cadastroProdutos(){
@@ -283,7 +298,7 @@ public class Natura{
 		//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		//Pesquisas
 		
-		//Pesquisar Cliente por Código
+		//Pesquisar Cliente por Código p/ Remoção ou Alteração de Dados
 		public static void pesqCliCodigo(){
 			long pesquisa = 0;
 			try{
@@ -300,7 +315,7 @@ public class Natura{
 			}
 		}
 		
-		//Pesquisar Cliente por Nome
+		//Pesquisar Cliente por Nome p/ Remoção ou Alteração de Dados
 		public static void pesqCliNome(){
 			String pesquisa = "";
 			System.out.println("Nome do Cliente: ");
@@ -359,6 +374,32 @@ public class Natura{
 			pesquisa = scan.nextLine();
 			DBConnection conn = new DBConnection();
 			conn.executeSQLProd("SELECT * FROM Produtos WHERE Descricao LIKE '%"+pesquisa+"%'");
+		}
+		
+		//Pesquisar Produto por Código p/ Cadastrar Pedido
+		public static void pesqProdCodPedido(){
+			long pesquisa = 0;
+			try{
+				System.out.println("Código do Produto: ");
+				pesquisa = scan.nextLong();
+				scan.nextLine();
+				DBConnection conn = new DBConnection();				
+				conn.executeSQLCliPed("SELECT * FROM Produtos WHERE CodProduto LIKE '%"+pesquisa+"%'");
+			}catch(InputMismatchException e){
+				System.out.println("---------------------------------");
+				System.out.println("ERRO: Digite somente números!");
+				System.out.println("---------------------------------");
+				scan.nextLine();
+			}
+		}
+		
+		//Pesquisar Produto por Nome p/ Cadastrar Pedido
+		public static void pesqProdNomePedido(){
+			String pesquisa = "";
+			System.out.println("Nome do Produto: ");
+			pesquisa = scan.nextLine();
+			DBConnection conn = new DBConnection();
+			conn.executeSQLCliPed("SELECT * FROM Produtos WHERE Descricao LIKE '%"+pesquisa+"%'");
 		}
 		
 		//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
