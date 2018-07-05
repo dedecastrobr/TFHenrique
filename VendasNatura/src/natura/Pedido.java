@@ -94,7 +94,18 @@ public class Pedido{
 		this.dataVenda = dataVenda;
 	}
 	
-	public Pedido(){
+	public Pedido(Cliente cli, Produto prod){
+		System.out.println("Data do Pedido: ");
+		this.dataPedido = scan.nextLine();
+		
+		try{
+			System.out.println("Preço Total do Pedido: ");
+			this.precoTotal = scan.nextDouble();
+			scan.nextLine();
+		}catch(InputMismatchException e){
+			System.out.println("ERRO: Digite somente números!");
+			scan.nextLine();
+		}
 		/*try{
 			System.out.println("Preço Total do Pedido: ");
 			this.precoTotal = scan.nextDouble();
@@ -104,16 +115,14 @@ public class Pedido{
 			System.out.println("ERRO: Digite somente números!");
 			scan.nextLine();
 		}*/
-		
-		System.out.println("Data do Pedido: ");
-		this.dataPedido = scan.nextLine();
 	}
 	
-	public void createPedido(Cliente cli){
+	public void createPedido(Cliente cli, Produto prod){
 		Connection conn = (new DBConnection()).getConn();
 		Statement stmt = null;
 		
-		String sql = "INSERT INTO Pedidos(Clientes_idCliente) VALUES('" + cli.getIdCliente() + "'";
+		String sql = "INSERT INTO Contem (Pedidos_idPedido, Produtos_idProd, Produtos_CodProduto) VALUES ('" + this.idPedido + "', '" + prod.getIdProduto() + "', '" + prod.getCodigoProd() + "')";
+		//String sql = "INSERT INTO Pedidos(idPedido, PrecoTotal, DataPedido, Clientes_idCliente, DataVenda, Status) VALUES('" + this.idPedido + "', '" + this.precoTotal + "', '" + this.dataPedido + "', '" + cli.getIdCliente() + "', '" + this.dataVenda + "', '" + this.status + "')";                                                                     
 		System.out.println(sql);
 		try {
 			stmt = conn.createStatement();

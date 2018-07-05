@@ -214,6 +214,7 @@ public class Natura{
 	//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	//Cadastros
 	
+		//Cadastrar Cliente
 		public static void cadastroClientes(){
 			Cliente clientes = new Cliente();
 			if(clientes != null && clientes.getTelefoneCliente() != 0){
@@ -227,6 +228,7 @@ public class Natura{
 			}
 		}
 		
+		//Cadastrar Cliente em um Pedido
 		public static void cadastroCliPed(){
 			Menu menuPesquisa = new Menu("Pesquisar Cliente", opsMenuPesquisa);
 			menuPesquisa.show();
@@ -252,6 +254,7 @@ public class Natura{
 			}while(opPesqClientes != 99);
 		}
 		
+		//Cadastrar Produto em um Pedido
 		public static void cadastroProdPed(){
 			Menu menuPesquisa = new Menu("Pesquisar Produto", opsMenuPesquisa);
 			menuPesquisa.show();
@@ -277,16 +280,29 @@ public class Natura{
 			}while(opPesqProdutos != 99);
 		}
 		
-		public static void cadCliPedido(Cliente cli){
-			Pedido ped = new Pedido();
-			ped.createPedido(cli);
+		public static void cadCliPedido(Cliente cli, Produto prod){
+			Pedido ped = new Pedido(cli, prod);
+			ped.createPedido(cli, prod);
 		}
 		
+		//Cadastrar Produto
 		public static void cadastroProdutos(){
 			Produto produtos = new Produto();
 			if(produtos != null && produtos.getCodigoProd() != 0){
 				produtos.createProduto();
 				produtos.mostraProduto();
+				System.out.println("---------------------------------");
+			}else{
+				System.out.println("---------------------------------");
+				System.out.println("Falha no cadastro do produto!");
+				System.out.println("---------------------------------");
+			}
+		}
+		
+		public static void cadastroPedidos(){
+			Pedido pedidos = new Pedido(null, null);
+			if(pedidos != null && pedidos.getIdPedido() != 0){
+				pedidos.mostraPedido(null, null);
 				System.out.println("---------------------------------");
 			}else{
 				System.out.println("---------------------------------");
@@ -384,7 +400,7 @@ public class Natura{
 				pesquisa = scan.nextLong();
 				scan.nextLine();
 				DBConnection conn = new DBConnection();				
-				conn.executeSQLCliPed("SELECT * FROM Produtos WHERE CodProduto LIKE '%"+pesquisa+"%'");
+				conn.executeSQLProdPed("SELECT * FROM Produtos WHERE CodProduto LIKE '%"+pesquisa+"%'");
 			}catch(InputMismatchException e){
 				System.out.println("---------------------------------");
 				System.out.println("ERRO: Digite somente números!");
@@ -399,7 +415,7 @@ public class Natura{
 			System.out.println("Nome do Produto: ");
 			pesquisa = scan.nextLine();
 			DBConnection conn = new DBConnection();
-			conn.executeSQLCliPed("SELECT * FROM Produtos WHERE Descricao LIKE '%"+pesquisa+"%'");
+			conn.executeSQLProdPed("SELECT * FROM Produtos WHERE Descricao LIKE '%"+pesquisa+"%'");
 		}
 		
 		//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
