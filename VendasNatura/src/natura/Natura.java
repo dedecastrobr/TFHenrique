@@ -84,7 +84,7 @@ public class Natura{
 				do{
 					switch(opPedidos){
 					case 0:
-						cadastroCliPed();
+						//cadastroPedidos(Pedido(pedidos1);
 						break;
 					case 1:
 						/*Cliente cli = new Cliente();
@@ -280,10 +280,10 @@ public class Natura{
 			}while(opPesqProdutos != 99);
 		}
 		
-		public static void cadCliPedido(Cliente cli, Produto prod){
+		/*public static void cadCliPedido(Cliente cli, Produto prod){
 			Pedido ped = new Pedido(cli, prod);
 			ped.createPedido(cli, prod);
-		}
+		}*/
 		
 		//Cadastrar Produto
 		public static void cadastroProdutos(){
@@ -299,17 +299,16 @@ public class Natura{
 			}
 		}
 		
-		public static void cadastroPedidos(){
-			Pedido pedidos = new Pedido(null, null);
-			if(pedidos != null && pedidos.getIdPedido() != 0){
-				pedidos.mostraPedido(null, null);
-				System.out.println("---------------------------------");
+		/*public static Pedido cadastroPedidos(String sqlCliPed, String sqlCliPed3, String sqlProdPed, String sqlProdPed3, Cliente cli, Produto prod, Pedido pedidos){
+			Pedido pedidos1 = new Pedido(sqlCliPed, sqlCliPed3, sqlProdPed, sqlProdPed3, cli, prod);
+			if(pedidos1 != null){
+				pedidos1.mostraPedido(cli, prod);
 			}else{
 				System.out.println("---------------------------------");
-				System.out.println("Falha no cadastro do produto!");
+				System.out.println("Falha no cadastro do pedido!");
 				System.out.println("---------------------------------");
 			}
-		}
+		}*/
 		
 		//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		//Pesquisas
@@ -341,7 +340,7 @@ public class Natura{
 		}
 		
 		//Pesquisar Cliente por Código p/ Cadastrar Pedido
-		public static void pesqCliCodPedido(){
+		public static Cliente pesqCliCodPedido(){
 			long pesquisa = 0;
 			try{
 				System.out.println("Código do Cliente: ");
@@ -355,15 +354,17 @@ public class Natura{
 				System.out.println("---------------------------------");
 				scan.nextLine();
 			}
+			return null;
 		}
 		
 		//Pesquisar Cliente por Nome p/ Cadastrar Pedido
-		public static void pesqCliNomePedido(){
+		public static Cliente pesqCliNomePedido(){
 			String pesquisa = "";
 			System.out.println("Nome do Cliente: ");
 			pesquisa = scan.nextLine();
 			DBConnection conn = new DBConnection();
 			conn.executeSQLCliPed("SELECT * FROM Clientes WHERE Nome LIKE '%"+pesquisa+"%'");
+			return null;
 		}
 		
 		//Pesquisar Produto por Código
